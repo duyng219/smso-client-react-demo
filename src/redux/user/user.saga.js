@@ -5,6 +5,8 @@ import UserActionTypes from "./user.type";
 import api from "../../api/client";
 import { Notification, NotificationDuration } from "../../components/antd/notification/notification.component";
 
+import history from "../../history";
+
 /*
   Saga là một middleware :
       - Được config đẻ bắt action và có các xử lý tương ứng.
@@ -22,13 +24,17 @@ const callAPILogin = async (loginInfo) => {
 export function* login(loginInfo) {
   try {
     yield put(signInProcessing());
-    yield delay(10000);
+    yield delay(5000);
     const res = yield call(callAPILogin, loginInfo);
     console.log("res: ", res);
     localStorage.setItem("token", res.data.token);
     localStorage.setItem("refreshToken", res.data.requestToken);
+    localStorage.setItem("smso-user-logged", JSON.stringify(res.data));
     Notification("success", "Logged in successfully", "top")
+    yield delay(5000);
+    window.location.href = '/'
     yield put(signInSuccess(res.data));
+    // history.push("/");
   } catch (error) {
     Notification("warning", "You have wrong email or password", "top")
     yield put(signInFailure(error));

@@ -8,6 +8,7 @@ import Sign from '../pages/sign/Sign.component'
 import FormUser from '../components/form-user-required/form-user.component'
 
 import './View.styles.scss'
+import User from '../pages/user/user-profile.component'
 
 const View = () => {
     const location = useLocation()
@@ -21,6 +22,8 @@ const View = () => {
 
 
                 <Route path='/form' element={<FormUser/>} />
+
+                <Route path='/user-profile' element={<User/>} />
 
 
 

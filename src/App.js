@@ -8,11 +8,13 @@ import View from './views/Views.component';
 import Footer from './components/footer/footer.component';
 import Process from "./components/process/process.component";
 
+import history from "./history";
+
 const App = () => {
   return (
     <React.Fragment>
         <div className="hero_area">
-          <BrowserRouter>
+          <BrowserRouter history={history}>
               <Header/>
               <Process/>
               <View/>
