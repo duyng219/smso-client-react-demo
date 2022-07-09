@@ -1,0 +1,69 @@
+.contact_section .contact_heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.contact_section .contact_heading h2 {
+    font-weight: bold;
+}
+
+.contact_section form .form-control {
+    border: none;
+    background-color: #f2f3f4;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 5px;
+    height: 50px;
+}
+
+.contact_section form .form-control#inputMessage {
+    height: 120px;
+}
+
+.contact_section form select.form-control {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    position: relative;
+    background-image: url(../../assets/images/down-arrow.png);
+    background-repeat: no-repeat;
+    background-position: 98%;
+}
+
+.contact_section button {
+    display: inline-block;
+    padding: 12px 40px;
+    background-color: #a053f9;
+    color: #f9fcfb;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 2px 7px 0px rgba(32, 50, 117, 0.26);
+    box-shadow: 0px 2px 7px 0px rgba(32, 50, 117, 0.26);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border: none;
+    text-transform: uppercase;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    margin-top: 35px;
+    font-size: 15px;
+}
+
+.contact_section button:hover {
+    -webkit-transform: translateY(-7px);
+    transform: translateY(-7px);
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -5px;
+    margin-left: -5px;
+    margin-bottom: 1rem;
+
+    .col-md-6 {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+}

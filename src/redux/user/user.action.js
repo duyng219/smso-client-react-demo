@@ -18,3 +18,25 @@ export const signInFailure = (err) => ({
   type: UserActionTypes.SIGN_IN_FAILURE,
   payload: err,
 });
+
+
+export const signUpStart = (registerInfo) => ({
+  type: UserActionTypes.SIGN_UP_START,
+  payload: registerInfo,
+});
+export const signUpProcessing = () => ({
+  type: UserActionTypes.SIGN_UP_PROCESSING,
+  payload: "",
+});
+
+export const signUpSuccess = (registerInfo) => ({
+  type: UserActionTypes.SIGN_UP_SUCCESS,
+  payload: registerInfo,
+});
+
+export const signUpFailure = (err) => ({
+  type: UserActionTypes.SIGN_UP_FAILURE,
+  payload: err,
+});
+
+

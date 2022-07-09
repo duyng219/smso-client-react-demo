@@ -1,0 +1,27 @@
+.slider_img-box {
+    width: 75%;
+    margin: 0 auto;
+}
+
+.welcome_section {
+    margin-bottom: 6rem;
+    margin-top: 2rem;
+    margin-right: -10rem;
+}
+
+.btn-box1 {
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    padding: 12px 40px;
+    background-color: #feb543;
+    color: #f9fcfb;
+    border-radius: 25px;
+    transition: all 0.3s;
+    border: none;
+    margin: 35px 0 50px 0;
+
+    .btn-1 {
+        color: white;
+    }
+}

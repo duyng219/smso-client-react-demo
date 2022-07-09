@@ -1,10 +1,24 @@
 import React from "react";
-import Login from "./Page/login.page";
+// import Login from "./Page/login.page";
+
+import {BrowserRouter} from 'react-router-dom'
+
+import Header from './components/header/header.component';
+import View from './views/Views.component';
+import Footer from './components/footer/footer.component';
+import Process from "./components/process/process.component";
 
 const App = () => {
   return (
     <React.Fragment>
-      <Login />
+        <div className="hero_area">
+          <BrowserRouter>
+              <Header/>
+              <Process/>
+              <View/>
+              <Footer/>
+          </BrowserRouter>
+        </div>
     </React.Fragment>
   );
 };
