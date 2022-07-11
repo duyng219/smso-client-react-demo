@@ -1,7 +1,12 @@
 .user-home {
     display: flex;
 
+    .user-sidebar {
+        margin: 4rem 0rem 0rem 0rem;
+        // flex: 0.5;
+    }
+
     .user-container {
-        flex: 6;
+        flex: 9;
     }
 }

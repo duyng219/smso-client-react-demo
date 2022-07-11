@@ -23,7 +23,7 @@ const Sidebar = () => {
                 <span className="logo"><SentimentVerySatisfiedIcon className="icon"/></span>
             </div>
             {/* <hr /> */}
-            <div className="center">
+            {/* <div className="center">
                 <ul>
 
                     <p className="title">MAIN</p>
@@ -95,7 +95,7 @@ const Sidebar = () => {
                     className="colorOption"
                     // onClick={() => dispatch({ type: "DARK" })}
                 ></div>
-            </div>
+            </div> */}
         </div>
     )
 }

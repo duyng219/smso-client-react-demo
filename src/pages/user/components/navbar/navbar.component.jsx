@@ -40,7 +40,7 @@ const Navbar = () => {
                         </div>
                     </button>
                     
-                    <Modal
+                    <Modal className="modal-notification"
                         title="Notifications"
                         style={{
                         top: 110,

@@ -5,6 +5,8 @@
     align-items: center;
     font-size: 14px;
     color: #555;
+    border-radius: 10px;
+    margin-left: -4rem;
 
     .wrapper {
         width: 100%;
@@ -54,6 +56,10 @@
                     background-color: #ece8ff;
                     opacity: 1;
                 }
+            }
+
+            .modal-notification {
+                border-radius: 10px;
             }
 
             .item {
