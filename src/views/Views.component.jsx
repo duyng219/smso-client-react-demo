@@ -8,22 +8,26 @@ import Sign from '../pages/sign/Sign.component'
 import FormUser from '../components/form-user-required/form-user.component'
 
 import './View.styles.scss'
-import User from '../pages/user/user-profile.component'
+import SubForm from '../components/subForm/subForm.component'
+import UserHome from '../pages/user/userhome.component'
 
 const View = () => {
     const location = useLocation()
     return (
         <AnimatePresence exitBeforeEnter>
             <Routes location={location} key={location.pathname}>
-                <Route path='/' element={<Homepage />} />
-                <Route path='/about' element={<About />} />
-                <Route path='/contact' element={<Contact />} />
-                <Route path='/sign' element={<Sign/>} />
+                <Route path='/'/>
+                    <Route index element={<Homepage />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='/contact' element={<Contact />} />
+                    <Route path='/sign' element={<Sign/>} />
 
+                    <Route path='/users' element={<UserHome/>}/>
+                        <Route path='users/form/:id' element={<FormUser/>}/>
+                        
+                    {/* <Route path='/form' element={<FormUser/>} /> */}
+                    <Route path='/form/subForm' element={<SubForm/>} />
 
-                <Route path='/form' element={<FormUser/>} />
-
-                <Route path='/user-profile' element={<User/>} />
 
 
 

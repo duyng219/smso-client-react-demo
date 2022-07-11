@@ -3,6 +3,8 @@ import { Navbar, Container, Nav, FormControl, Form } from 'react-bootstrap'
 import logo from '../../assets/logo/images-removebg-preview.png'
 import './header.styles.scss'
 
+import userimg from '../../assets/images/user/65e06fe2f34b33156a5a.jpg'
+
 import history from "../../history";
 
 
@@ -48,7 +50,7 @@ const Header = () => {
 
 
                         <Link to={"/contact"}><Nav.Link href="#3">Contact</Nav.Link></Link>
-                        <Link to={"/form"}><Nav.Link href="#5">Form</Nav.Link></Link>
+                        <Link to={"/users/form/:id"}><Nav.Link href="#5">Form</Nav.Link></Link>
                         {/* <Nav.Link href="#3">
                                 <Link to={"/contact"}>
                                     Contact
@@ -86,19 +88,35 @@ const Header = () => {
                         <button className='customButton' >Search</button>
                     </Form>
                     
-
-
+                    
+                    
+                    
 
                     {!userInfo && (
-                        <Link to={"/sign"}><Nav.Link href="#4"><button className='customButton' >Sign In</button></Nav.Link></Link>
+                        <Link to={"/sign"}><Nav.Link href="#4"><button className='customButton custom-signin' >Sign In</button></Nav.Link></Link>
                     )}
             
                     {userInfo && (
-                        <Nav.Link href="/"><button onClick={handleLogout} className='customButton' >Log out</button></Nav.Link>
+                        <Nav.Link href="/"><button onClick={handleLogout} className='customButton custom-signin custom-logout' >Log out</button></Nav.Link>
                     )}
 
                     {userInfo?.userRoles[0] && (
-                        <Link to={"/user-profile"}><Nav.Link href="#4"><button className='customButton' >Profile</button></Nav.Link></Link>
+                        <Link to={"/users"}>
+                        <Nav.Link href="#4">
+                            <button className='button-user' >
+                                <div className="item-user">
+                                    <img
+                                        src={userimg}
+                                        alt=""
+                                        className="avatar-user"
+                                    />
+                                </div>
+                            </button>
+                        </Nav.Link>
+                    </Link>
+                    )}
+                    {userInfo?.userRoles[1] && (
+                        <Link to={"/admin-profile"}><Nav.Link href="#4"><button className='customButton' >Admin</button></Nav.Link></Link>
                     )}
                 </Navbar.Collapse>
 
