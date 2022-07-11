@@ -15,23 +15,23 @@ const Navbar = () => {
     return (
         <div className="navbar-user">
             <div className="wrapper">
-                <div className="search">
+                <div className="search ">
                     <input type="text" placeholder="Search..." />
-                    <SearchOutlinedIcon />
+                    <SearchOutlinedIcon className="icon notification-hover" />
                 </div>
                 <div className="items">
                     <div className="item">
-                        <LanguageOutlinedIcon className="icon" />
+                        <LanguageOutlinedIcon className="icon notification-hover" />
                         English
                     </div>
                     <div className="item">
                         <DarkModeOutlinedIcon
-                            className="icon"
+                            className="icon notification-hover"
                             // onClick={() => dispatch({ type: "TOGGLE" })}
                         />
                     </div>
                     <div className="item">
-                        <FullscreenExitOutlinedIcon className="icon" />
+                        <FullscreenExitOutlinedIcon className="icon notification-hover" />
                     </div>
                     <button className="btn-notification" onClick={() => setModal1Visible(true)}>
                         <div className="item">
@@ -56,11 +56,11 @@ const Navbar = () => {
                     </Modal>
 
                     <div className="item">
-                        <ChatBubbleOutlineOutlinedIcon className="icon" />
+                        <ChatBubbleOutlineOutlinedIcon className="icon notification-hover" />
                         <div className="counter">2</div>
                     </div>
                     <div className="item">
-                        <ListOutlinedIcon className="icon" />
+                        <ListOutlinedIcon className="icon notification-hover" />
                     </div>
                 </div>
             </div>
