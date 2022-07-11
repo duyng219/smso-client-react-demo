@@ -5,6 +5,7 @@ import Sidebar from './components/sidebar/sidebar.component'
 
 import './userhome.styles.scss'
 import Navbar from './components/navbar/navbar.component'
+import MessageBox from './components/messagebox/messagebox.component'
 
 
 
@@ -17,11 +18,13 @@ const UserHome = () => {
             transition={{ duration: 0.5 }}
         >
             <Hero>
-                <div className="home-user">
+                <div className="user-home">
                     <Sidebar/>
                     <div className="user-container">
                         <Navbar/>
-                        container
+                        <div className="user-widgets">
+                            <MessageBox/>
+                        </div>
                     </div>
                 </div>
             </Hero>
@@ -30,7 +33,7 @@ const UserHome = () => {
 }
 
 const Hero = styled.div`
-    margin-bottom: 50rem;
+    margin-bottom: 1rem;
 `
 
 export default UserHome

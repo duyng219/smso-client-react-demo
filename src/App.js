@@ -9,6 +9,7 @@ import Footer from './components/footer/footer.component';
 import Process from "./components/process/process.component";
 
 import history from "./history";
+import UserHome from "./pages/user/userhome.component";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <div className="hero_area">
           <BrowserRouter history={history}>
               <Header/>
+              {/* <UserHome/> */}
               <Process/>
               <View/>
               <Footer/>
