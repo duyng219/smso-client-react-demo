@@ -346,7 +346,9 @@ const FormUser = () => {
                     Register
                 </Button>
             </Form.Item>
+            <hr/>
         </Form>
+        
         </div>
     );
 };

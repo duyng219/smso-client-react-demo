@@ -62,8 +62,8 @@ const Contact = () => {
 }
 
 const Hero = styled.div`
-margin-top: 2rem;
-    margin-bottom: 4rem;
+margin-top: 5rem;
+    margin-bottom: 198px;
 `
 
 

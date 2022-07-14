@@ -8,10 +8,21 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 import ListOutlinedIcon from "@mui/icons-material/ListOutlined";
 import './navbar.styles.scss'
 
-import { Button, Modal } from 'antd';
+// import { Modal } from 'antd';
+
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const Navbar = () => {
+
     const [modal1Visible, setModal1Visible] = useState(false);
+
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
     return (
         <div className="navbar-user">
             <div className="wrapper">
@@ -27,20 +38,38 @@ const Navbar = () => {
                     <div className="item">
                         <DarkModeOutlinedIcon
                             className="icon notification-hover"
-                            // onClick={() => dispatch({ type: "TOGGLE" })}
+                        // onClick={() => dispatch({ type: "TOGGLE" })}
                         />
                     </div>
                     <div className="item">
                         <FullscreenExitOutlinedIcon className="icon notification-hover" />
                     </div>
-                    <button className="btn-notification" onClick={() => setModal1Visible(true)}>
+                    {/* onClick={() => setModal1Visible(true)} */}
+                    <button className="btn-notification" onClick={handleShow}>
                         <div className="item">
                             <NotificationsNoneOutlinedIcon className="icon notification-hover" />
                             <div className="counter">1</div>
                         </div>
                     </button>
-                    
-                    <Modal className="modal-notification"
+
+                    <Modal  size="sm" show={show} onHide={handleClose} style={{
+                        top: 85,
+                        left: 685,
+                        }}>
+                        <Modal.Header >
+                            <Modal.Title>Notifications</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>Woohoo, you're reading this text in a!</Modal.Body>
+                        <Modal.Body>Woohoo, you're reading this text in a!</Modal.Body>
+                        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+
+                    {/* <Modal className="modal-notification"
                         title="Notifications"
                         style={{
                         top: 110,
@@ -53,7 +82,7 @@ const Navbar = () => {
                         <p>some contents...</p>
                         <p>some contents...</p>
                         <p>some contents...</p>
-                    </Modal>
+                    </Modal> */}
 
                     <div className="item">
                         <ChatBubbleOutlineOutlinedIcon className="icon notification-hover" />

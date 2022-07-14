@@ -4,6 +4,11 @@ import ig from '../../assets/images/instagram1.png'
 import li from '../../assets/images/linkedin1.png'
 import tw from '../../assets/images/twitter.png'
 
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+
 import { motion } from 'framer-motion'
 
 import './footer.styles.scss'
@@ -16,7 +21,7 @@ const Footer = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <div className="footer_bg">
+            {/* <div className="footer_bg">
                 <section className="info_section layout_padding2-bottom">
                     <div className="container">
                         <h3 className>
@@ -44,18 +49,8 @@ const Footer = () => {
                                                     Services
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href>
-                                                    Contact Us
-                                                </a>
-                                            </li>
                                         </ul>
                                         <ul className="ml-3 ml-md-5">
-                                            <li>
-                                                <a href>
-                                                    Loram ipusm
-                                                </a>
-                                            </li>
                                             <li>
                                                 <a href>
                                                     Loram ipusm
@@ -87,21 +82,11 @@ const Footer = () => {
                                                     Services
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href>
-                                                    Contact Us
-                                                </a>
-                                            </li>
                                         </ul>
                                         <ul className="ml-3 ml-md-5">
                                             <li>
                                                 <a href>
                                                     adipiscing elit,
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href>
-                                                    sed do eiusmod
                                                 </a>
                                             </li>
                                             <li>
@@ -130,21 +115,11 @@ const Footer = () => {
                                                     Services
                                                 </a>
                                             </li>
-                                            <li>
-                                                <a href>
-                                                    Contact Us
-                                                </a>
-                                            </li>
                                         </ul>
                                         <ul className="ml-3 ml-md-5">
                                             <li>
                                                 <a href>
                                                     consectetur
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href>
-                                                    adipiscing
                                                 </a>
                                             </li>
                                             <li>
@@ -191,7 +166,43 @@ const Footer = () => {
                         © 2022 All Rights Reserved By Group 03
                     </p>
                 </section>
+            </div> */}
+
+
+            {/* <div class="footer-basic">
+                <footer>
+                    <div class="social">
+                        <a href="/" className="iconCustom"><FacebookIcon/></a>
+                        <a href="/" className="iconCustom"><InstagramIcon/></a>
+                        <a href="/" className="iconCustom"><TwitterIcon/></a>
+                        <a href="/" className="iconCustom"><LinkedInIcon/></a>
+                    </div>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="/">Home</a></li>
+                        <li class="list-inline-item"><a href="/">Services</a></li>
+                        <li class="list-inline-item"><a href="/">About</a></li>
+                        <li class="list-inline-item"><a href="/">Terms</a></li>
+                        <li class="list-inline-item"><a href="/">Privacy Policy</a></li>
+                    </ul>
+                    <p class="copyright">Company Group 03 © 2018</p>
+                </footer>
+            </div> */}
+
+            <div class="footer-container">
+            <div class="footer-container-sub">
+                <div className="copyright">
+                    <p class="copyright-p">© 2022 - Group 03</p>
+                </div>
+                <div className="social">
+                    <a href="/" className="support">Contact Us</a>
+                    <a href="/" className="face">f</a>
+                    <a href="/" className="tweet">t</a>
+                    <a href="/" className="linked">in</a>
+                </div>
             </div>
+            </div>
+            
+
         </motion.div>
 
     )

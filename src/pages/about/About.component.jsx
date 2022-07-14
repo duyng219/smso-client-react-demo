@@ -21,7 +21,7 @@ const About = () => {
                     <div className="container">
                         <div className="custom_heading-container">
                             <h2>
-                                Welcome To Our Company
+                                Welcome To Application
                             </h2>
                         </div>
                         <div className="layout_padding2">

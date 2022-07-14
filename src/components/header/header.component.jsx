@@ -10,6 +10,8 @@ import history from "../../history";
 
 import { Link } from 'react-router-dom'
 
+import { NotificationDuration, Notification } from '../antd/notification/notification.component'
+
 
 const Header = () => {
     const userInfo = JSON.parse(localStorage.getItem("smso-user-logged"));
@@ -18,6 +20,11 @@ const Header = () => {
         await localStorage.removeItem("smso-user-logged");
         history.push("/");
     };
+
+    const hanldeClick = (e) => {
+        e.preventDefault()
+        Notification("success", "Function Search", "top")
+    }
 
     return (
         <div className="header">
@@ -85,7 +92,7 @@ const Header = () => {
                                 className="me-2"
                                 aria-label="Search"
                             />
-                            <button className='customButton' >Search</button>
+                            <button onClick={hanldeClick} className='customButton' >Search</button>
                         </Form>
 
 
@@ -93,7 +100,7 @@ const Header = () => {
 
 
                         {!userInfo && (
-                            <Link to={"/sign"}><Nav.Link href="#4"><button className='customButton custom-signin' >Sign In</button></Nav.Link></Link>
+                            <Link to={"/sign"}><Nav.Link href="#4"><button className='customButton custom-signin' >Sign <br/> In</button></Nav.Link></Link>
                         )}
 
                         {userInfo && (

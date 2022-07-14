@@ -13,6 +13,9 @@ export const Notification = (type, message, placement, description = "") => {
         message:  message,
         placement: placement,
         description: description,
+        style: {
+            marginTop: 50,
+        },
     });
 };
 
@@ -22,5 +25,8 @@ export const NotificationDuration = (type, message, placement, description, dura
         placement: placement,
         description: description,
         duration: duration,
+        style: {
+            marginTop: 50,
+        },
     });
 };
