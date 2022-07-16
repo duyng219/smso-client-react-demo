@@ -21,9 +21,13 @@ export default function AuthProvider({ children }) {
                     displayName, email, uid, photoURL
                 })
                 setIsLoading(false)
-                history.push('/')
+                // history.push('/users')
+                // window.location.href = '/users'
+                // return
             }
-            history.push('/sign')
+            setIsLoading(false)
+            // history.push('/sign')
+            // window.location.href = '/sign'
         })
 
         // clean fuction

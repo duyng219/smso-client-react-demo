@@ -1,34 +1,33 @@
 import React, { useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
+
+import LinearProgress from "@mui/material/LinearProgress";
+import { Grid } from "@mui/material";
+import { Button } from "antd";
 import './sign-in.styles.scss'
 
-import { Grid } from "@mui/material";
-import { connect } from "react-redux";
-import { signInStart } from "../../redux/user/user.action";
-import { createStructuredSelector } from "reselect";
-import LinearProgress from "@mui/material/LinearProgress";
-import {
-    selectCurrentUser,
-    selectLoginStatus,
-} from "../../redux/user/user.selector";
 import UserActionTypes from "../../redux/user/user.type";
+import { signInStart } from "../../redux/user/user.action";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser, selectLoginStatus,} from "../../redux/user/user.selector";
 
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
+import firebase, { auth, db } from '../../firebase/config';
 
-import firebase, { auth } from '../../firebase/config';
-import { Button } from "antd";
-const fbProvider = new firebase.auth.FacebookAuthProvider();
+
+
 const googleProvider = new firebase.auth.GoogleAuthProvider();
+const fbProvider = new firebase.auth.FacebookAuthProvider();
 
 const SignIn = ({ user, login, status }) => {
+    
+    // LOGIN WITH API
     console.log(status);
     const [userLogin, setUserLogin] = useState({
         userName: "",
         password: "",
     });
-
     const handleChange = (event) => {
         setUserLogin((preState) => ({
             ...preState,
@@ -38,14 +37,29 @@ const SignIn = ({ user, login, status }) => {
                     : event.target.value,
         }));
     };
-
     const handleLogin = () => {
         login(userLogin);
     };
 
 
-    const handleFbLogin = () => {
-        auth.signInWithPopup(fbProvider);
+    // LOGIN WITH FACEBOOK
+    const handleFbLogin = async () => {
+        const { additionalUserInfo, user} = await auth.signInWithPopup(fbProvider);
+
+        // Check data and import in to firebase or post api
+        if(additionalUserInfo?.isNewUser) {
+            db.collection('users').add({
+                displayName: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL,
+                uid: user.displayName,
+                providerId: additionalUserInfo.providerId,
+            })
+            console.log({additionalUserInfo})
+            localStorage.setItem("smso-user-logged-fb", JSON.stringify(additionalUserInfo.profile));
+            window.location.href = '/'
+
+        }
     }
     
     return (
@@ -86,7 +100,7 @@ const SignIn = ({ user, login, status }) => {
             </form>
             <br/>
             <Button type="button" onClick={handleFbLogin}>Sign in with Facebook</Button>
-            <input type="text" placeholder="Current User" value={user.userName} name="" id="" />
+            {/* <input type="text" placeholder="Current User" value={user.userName} name="" id="" /> */}
         </div>
     )
 }

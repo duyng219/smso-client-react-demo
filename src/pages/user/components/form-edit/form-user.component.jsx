@@ -54,15 +54,12 @@ const FormUser = () => {
                             <div className="col-md-4">
                                 <div className="profile-work">
                                     <p>INTERESTS</p>
-                                    <a href>Testing</a><br />
-                                    <a href>Testing</a><br />
-                                    <a href>Testing</a>
-                                    {/* <p>SKILLS</p>
-                                    <a href>Web Designer</a><br />
-                                    <a href>Web Developer</a><br />
-                                    <a href>WordPress</a><br />
-                                    <a href>WooCommerce</a><br />
-                                    <a href>PHP, .Net</a><br /> */}
+                                    <span>Testing</span><br />
+                                    <span>Testing</span><br />
+                                    <span>Testing</span><br />
+                                    <span>Testing</span><br />
+                                    
+                                    
                                 </div>
                             </div>
                             <div className="col-md-8">

@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Avatar, Typography } from 'antd';
 import styled from 'styled-components';
 
+import { auth } from '../../../../../firebase/config'
 
 const WrapperStyled = styled.div`
     display: flex;
@@ -25,8 +26,8 @@ export default function UserInfo() {
                 </Avatar>
                 <Typography.Text className='username'>bbb</Typography.Text>
             </div>
-            <Button>
-                button
+            <Button onClick={() => auth.signOut()}>
+                Log out fb
             </Button>
         </WrapperStyled>
     );
