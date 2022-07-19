@@ -9,19 +9,24 @@ import { PersistGate } from "redux-persist/integration/react";
 import AuthProvider from './context/AuthProvider'
 
 import "antd/dist/antd.css";
-import 'bootstrap/dist/css/bootstrap.min.css';   
+import 'bootstrap/dist/css/bootstrap.min.css';
+import AppProvider from "./context/AppProvider";
+import { storeLoad } from "./redux/loading/storeloading";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
+  // <React.StrictMode>
+  <Provider store={store}>
       <AuthProvider>
-        <PersistGate persistor={persistor}>
-          <App/>
-        </PersistGate>
+        <AppProvider>
+          <PersistGate persistor={persistor}>
+            <App />
+          </PersistGate>
+        </AppProvider>
       </AuthProvider>
-    </Provider>
-  </React.StrictMode>
+    {/* </Provider> */}
+  </Provider>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

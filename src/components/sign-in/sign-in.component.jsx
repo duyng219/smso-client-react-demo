@@ -11,17 +11,22 @@ import UserActionTypes from "../../redux/user/user.type";
 import { signInStart } from "../../redux/user/user.action";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCurrentUser, selectLoginStatus,} from "../../redux/user/user.selector";
+import { selectCurrentUser, selectLoginStatus, } from "../../redux/user/user.selector";
 
 import firebase, { auth, db } from '../../firebase/config';
+import { addDocument } from "../../firebase/services";
+import Loading from "../loading/loading";
+
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 
 
-const googleProvider = new firebase.auth.GoogleAuthProvider();
+// const googleProvider = new firebase.auth.GoogleAuthProvider();
 const fbProvider = new firebase.auth.FacebookAuthProvider();
 
 const SignIn = ({ user, login, status }) => {
-    
+
     // LOGIN WITH API
     console.log(status);
     const [userLogin, setUserLogin] = useState({
@@ -44,24 +49,53 @@ const SignIn = ({ user, login, status }) => {
 
     // LOGIN WITH FACEBOOK
     const handleFbLogin = async () => {
-        const { additionalUserInfo, user} = await auth.signInWithPopup(fbProvider);
+        const { additionalUserInfo, user } = await auth.signInWithPopup(fbProvider);
 
         // Check data and import in to firebase or post api
-        if(additionalUserInfo?.isNewUser) {
-            db.collection('users').add({
-                displayName: user.displayName,
-                email: user.email,
-                photoURL: user.photoURL,
-                uid: user.displayName,
-                providerId: additionalUserInfo.providerId,
+        if (additionalUserInfo?.isNewUser) {
+            // db.collection('users').add({
+            //     displayName: user.displayName,
+            //     email: user.email,
+            //     photoURL: user.photoURL,
+            //     uid: user.displayName,
+            //     providerId: additionalUserInfo.providerId,
+            // })
+
+            addDocument('users', {
+                    displayName: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL,
+                    uid: user.displayName,
+                    providerId: additionalUserInfo.providerId,
             })
-            console.log({additionalUserInfo})
+            console.log({ additionalUserInfo })
             localStorage.setItem("smso-user-logged-fb", JSON.stringify(additionalUserInfo.profile));
             window.location.href = '/'
 
         }
     }
-    
+
+    //LOGIN WITH GOOGLE
+    const signInWithGoogle = async () => {
+        // Retrieve Google provider object
+        const provider = new firebase.auth.GoogleAuthProvider();
+        // Set language to the default browser preference
+        firebase.auth().useDeviceLanguage();
+        // Start sign in process
+        try {
+            await firebase.auth().signInWithPopup(provider);
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+    const signOut = async () => {
+        try {
+            await firebase.auth().signOut();
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
+
     return (
         <div className="sign-in">
             <h2>I already have an account</h2>
@@ -92,14 +126,27 @@ const SignIn = ({ user, login, status }) => {
                     >
                         Sign in
                     </CustomButton>
-                    <CustomButton type="button" isGoogleSignIn>Sign in with Google</CustomButton>
+
+                    <div className="Container-signInFbOrGg">
+                        <p>Sign in with Facebook or Google</p>
+                        <div className="signInFbOrGg">
+                            <Button type="button" onClick={signInWithGoogle}><GoogleIcon type="button" onClick={signInWithGoogle} isGoogleSignIn></GoogleIcon></Button>
+                            <Button type="button" onClick={handleFbLogin}><FacebookIcon type="button" onClick={signInWithGoogle}></FacebookIcon></Button>
+                        </div>
+                    </div>
                     
                 </div>
-                {status === UserActionTypes.EMAIL_SIGN_IN_PROCESSING ? (<Grid item md={12} xs={12}><LinearProgress /></Grid>) : null}
+                {/* {status === UserActionTypes.EMAIL_SIGN_IN_PROCESSING ? (<Grid item md={12} xs={12}><LinearProgress /></Grid>) : null} */}
+
+                {status === UserActionTypes.EMAIL_SIGN_IN_PROCESSING ? (<Loading/>) : null}
+
                 {/* {status === UserActionTypes.EMAIL_SIGN_IN_PROCESSING ? (<Box sx={{ display: 'flex' }}><CircularProgress /></Box>) : null} */}
             </form>
-            <br/>
-            <Button type="button" onClick={handleFbLogin}>Sign in with Facebook</Button>
+            {/* <br /> */}
+            {/* <Button type="button" onClick={handleFbLogin}>Sign in with Facebook</Button>
+
+
+            <Button style={{ padding: '20px', fontSize: '15px', borderRadius: '0', fontWeight: '600' }} onClick={signOut}>Sign Out</Button> */}
             {/* <input type="text" placeholder="Current User" value={user.userName} name="" id="" /> */}
         </div>
     )

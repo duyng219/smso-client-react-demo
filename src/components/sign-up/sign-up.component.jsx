@@ -12,6 +12,7 @@ import { signUpStart } from '../../redux/user/user.action';
 import UserActionTypes from '../../redux/user/user.type';
 import { Grid } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
+import Loading from '../loading/loading';
 
 
 const SignUp = ({ register, status }) => {
@@ -86,7 +87,8 @@ const SignUp = ({ register, status }) => {
                         SIGN UP
                     </CustomButton>
             </form>
-            {status === UserActionTypes.SIGN_UP_PROCESSING  ?  (<Grid item md={12} xs={12}><LinearProgress /></Grid>)  :  null}
+            {/* {status === UserActionTypes.SIGN_UP_PROCESSING  ?  (<Grid item md={12} xs={12}><LinearProgress /></Grid>)  :  null} */}
+            {status === UserActionTypes.SIGN_UP_PROCESSING  ?  (<Loading/>)  :  null}
         </div>
     )
 }

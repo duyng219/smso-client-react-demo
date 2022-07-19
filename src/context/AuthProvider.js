@@ -1,10 +1,12 @@
 import React from 'react'
 
 import history from '../history'
-import { Spin } from 'antd'
+
+
 
 import { auth } from '../firebase/config';
 import { useState } from 'react';
+import Loading from '../components/loading/loading';
 
 export const AuthContext = React.createContext();
 
@@ -23,10 +25,10 @@ export default function AuthProvider({ children }) {
                 setIsLoading(false)
                 // history.push('/users')
                 // window.location.href = '/users'
-                // return
+                return
             }
             setIsLoading(false)
-            // history.push('/sign')
+            history.push('/sign')
             // window.location.href = '/sign'
         })
 
@@ -38,7 +40,7 @@ export default function AuthProvider({ children }) {
 
     return (
         <AuthContext.Provider value={{ user }}>
-            {isLoading ? <Spin/> : children}
+            {isLoading ? <Loading/> : children}
         </AuthContext.Provider>
         
     )

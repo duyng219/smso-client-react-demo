@@ -2,34 +2,50 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-import { NavLink } from "react-router-dom";
 
-import './userhome.styles.scss'
+import  './userhome.styles.scss'
 import Navbar from './components/navbar/navbar.component'
 import MessageBox from './components/messagebox/messagebox.component'
 
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSystemDaydreamOutlined";
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
-import ChatIcon from '@mui/icons-material/Chat';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import FeedIcon from '@mui/icons-material/Feed';
 import AutorenewIcon from '@mui/icons-material/Autorenew';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
-import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
+import HomeIcon from '@mui/icons-material/Home';
+import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
+import ForumIcon from '@mui/icons-material/Forum';
 
 import { Tabs } from 'antd';
-import FormEditUser from './components/form-edit/form-edit-user.component';
 import FormUser from './components/form-edit/form-user.component';
 
 import history from '../../history';
+import HomeUser from './components/home-user/homeUser.component';
+import ChatSMSOnline from './components/chat-smso/chatSMSO.component';
+import ServicesUser from './components/services-user/serviceUser.component';
+import FooterLayout from '../../components/footer/footer.component';
+
+import { Notification, NotificationDuration } from "../../components/antd/notification/notification.component";
+import { delay } from "redux-saga/effects";
 
 const UserHome = () => {
     const { TabPane } = Tabs;
+
+    const userInfo = JSON.parse(localStorage.getItem("smso-user-logged"));
+    const userInfoFb = JSON.parse(localStorage.getItem("smso-user-logged-fb"));
+
+    if (!userInfo || !userInfoFb) {
+        Notification("error", "Không có quyền truy cập", "top")
+        setTimeout(function() {
+            window.location.href = '/sign'
+            // history.push("/sign")
+        }, 1000);
+    }
 
     return (
         <motion.div
@@ -39,20 +55,10 @@ const UserHome = () => {
             transition={{ duration: 0.5 }}
         >
             <Hero>
-                {/* <div className="user-home">
-                    <Sidebar/>
-                    <div className="user-container">
-                        <Navbar/>
-                        <div className="user-widgets">
-                            <MessageBox/>
-                        </div>
-                    </div>
-                </div> */}
                 <div className="user-home">
                     <div className='user-sidebar'>
-                        
-                    </div>
 
+                    </div>
 
                     <div className="user-container">
                         <Navbar />
@@ -61,125 +67,118 @@ const UserHome = () => {
                     </div>
 
                 </div>
-                <Tabs 
+                <Tabs
                     tabPosition="left"
                     onChange={key => {
                         history.push(`/users/${key}`);
                     }}
+                    className="list-tabs-user"
                 >
+                    <TabPane
+                        tab={
+                            <span>
+                                {<HomeIcon />}
+                                Home user
+                            </span>
+                        }
+                    // key="home-user"
+                    >
+                        <HomeUser />
+                    </TabPane>
 
-                            <TabPane
-                                tab={
-                                    <span>
-                                        {<ChatIcon />}
-                                        Message Box
-                                    </span>
-                                }
-                                // key="1"
-                            >
-                                <MessageBox/>
-                            </TabPane>
-                            <TabPane
-                                tab={
-                                    <span>
-                                        {<PersonSearchIcon className="icon" />}
-                                        Find around
-                                    </span>
-                                }
-                                key="find"
-                            >
-                                Tab 2
-                            </TabPane>
-                            <TabPane
-                                tab={
-                                    <span>
-                                        {<AccountCircleOutlinedIcon className="icon" />}
-                                        Profile
-                                    </span>
-                                }
-                                key="profile"
-                            >
-                                <FormUser/>
-                            </TabPane>
-                            <TabPane
-                                tab={
-                                    <span>
-                                        {<AutorenewIcon className="icon" />}
-                                        Pending Status
-                                    </span>
-                                }
-                                key="pending-status"
-                            >
-                                Tab 4
-                            </TabPane>
-                            <TabPane
-                                tab={
-                                    <span>
-                                        {<NotificationsNoneIcon className="icon" />}
-                                        Notifications
-                                    </span>
-                                }
-                                key="notification"
-                            >
-                                Tab 5
-                            </TabPane>
-                            <TabPane
-                                tab={
-                                    <span>
-                                        {<FeedIcon className="icon" />}
-                                        News
-                                    </span>
-                                }
-                                key="news"
-                            >
-                                Tab 6
-                            </TabPane>
-                            <TabPane
-                                tab={
-                                    <span>
-                                        {<MenuBookIcon className="icon" />}
-                                        Funny story
-                                    </span>
-                                }
-                                key="funny-story"
-                            >
-                                Tab 7
-                            </TabPane>
-                            <TabPane
-                                tab={
-                                    <span>
-                                        {<SettingsSystemDaydreamOutlinedIcon className="icon" />}
-                                        System Health
-                                    </span>
-                                }
-                                key="systen-health"
-                            >
-                                Tab 8
-                            </TabPane>
-                            <TabPane
-                                tab={
-                                    <span>
-                                        {<PsychologyOutlinedIcon className="icon" />}
-                                        Logs
-                                    </span>
-                                }
-                                key="logs"
-                            >
-                                Tab 9
-                            </TabPane>
-                            <TabPane
-                                tab={
-                                    <span>
-                                        {<SettingsApplicationsIcon className="icon" />}
-                                        Settings
-                                    </span>
-                                }
-                                key="settings"
-                            >
-                                Tab 10
-                            </TabPane>
-                        </Tabs>
+                    <TabPane
+                        tab={
+                            <span>
+                                {<MarkUnreadChatAltIcon />}
+                                Chat SMSO
+                            </span>
+                        }
+                    key="message"
+                    >
+                        <ChatSMSOnline />
+                    </TabPane>
+
+                    <TabPane
+                        tab={
+                            <span>
+                                {<ForumIcon />}
+                                Chat SMSO All
+                            </span>
+                        }
+                    key="message-all"
+                    >
+                        <MessageBox />
+                    </TabPane>
+                    <TabPane
+                        tab={
+                            <span>
+                                {<PersonSearchIcon className="icon" />}
+                                Add Friends
+                            </span>
+                        }
+                        key="add-friends"
+                    >
+                        Tab 2
+                    </TabPane>
+                    <TabPane
+                        tab={
+                            <span>
+                                {<AccountCircleOutlinedIcon className="icon" />}
+                                Profile
+                            </span>
+                        }
+                        key="profile"
+                    >
+                        <FormUser />
+                    </TabPane>
+                    <TabPane
+                        tab={
+                            <span>
+                                {<AutorenewIcon className="icon" />}
+                                Pending Status
+                            </span>
+                        }
+                        key="pending-status"
+                    >
+                        Tab 4
+                    </TabPane>
+                    <TabPane
+                        tab={
+                            <span>
+                                {<NotificationsNoneIcon className="icon" />}
+                                Notifications
+                            </span>
+                        }
+                        key="notification"
+                    >
+                        Tab 5
+                    </TabPane>
+                    <TabPane
+                        tab={
+                            <span>
+                                {<FeedIcon className="icon" />}
+                                Services
+                            </span>
+                        }
+                        key="news"
+                    >
+                        <ServicesUser/>
+                    </TabPane>
+
+                    <TabPane
+                        tab={
+                            <span>
+                                {<SettingsApplicationsIcon className="icon" />}
+                                Settings
+                            </span>
+                        }
+                        key="settings"
+                    >
+                        Tab 8
+                    </TabPane>
+                </Tabs>
             </Hero>
+            {/* <FooterLayout/> */}
         </motion.div >
     )
 }

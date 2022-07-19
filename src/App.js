@@ -1,29 +1,36 @@
 import React from "react";
-// import Login from "./Page/login.page";
+import './App.css'
 
 import {BrowserRouter} from 'react-router-dom'
+import { useSelector } from "react-redux";
 
 import Header from './components/header/header.component';
 import View from './views/Views.component';
 import Footer from './components/footer/footer.component';
 import Process from "./components/process/process.component";
 
+
 import history from "./history";
-import UserHome from "./pages/user/userhome.component";
+import Loading from "../src/components/loading/loading";
 
 const App = () => {
+  // const { loading } = useSelector((state) => state.loading);
   return (
-    <React.Fragment>
+    <>
+      <React.Fragment>
+        {/* {loading && <Loading />} */}
+        {/* <Loading /> */}
         <div className="hero_area">
           <BrowserRouter history={history}>
               <Header/>
-              {/* <UserHome/> */}
               <Process/>
               <View/>
-              <Footer/>
+              {/* <Footer/> */}
           </BrowserRouter>
         </div>
-    </React.Fragment>
+      </React.Fragment>
+    </>
+    
   );
 };
 export default App;

@@ -2,6 +2,9 @@ import React from 'react'
 import { Collapse, Typography, Button } from 'antd'
 import styled, { StyleSheetManager } from 'styled-components';
 import { PlusSquareOutlined } from '@ant-design/icons';
+import useFirestore from '../../../../../hooks/useFirestore';
+import { AuthContext } from '../../../../../context/AuthProvider';
+import { AppContext } from '../../../../../context/AppProvider';
 
 const { Panel } = Collapse
 
@@ -28,12 +31,15 @@ const LinkStyled = styled(Typography.Link)`
 `;
 
 const RoomList = () => {
+    const { rooms } = React.useContext(AppContext)
+    console.log({rooms});
+
     return (
         <Collapse ghost defaultActiveKey={['1']}>
             <PanelStyled header="List Room" key='1'>
-                <LinkStyled>Room 1</LinkStyled>
-                <LinkStyled>Room 2</LinkStyled>
-                <LinkStyled>Room 3</LinkStyled>
+            {
+                rooms.map(room => <LinkStyled key={room.id}>{room.name}</LinkStyled>)
+            }
                 <ButtonCustom
                     type='text'
                     icon={<PlusSquareOutlined />}

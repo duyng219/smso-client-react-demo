@@ -1,12 +1,19 @@
 import React from 'react'
 import './homepage.styles.scss'
 import slideimg from '../../assets/images/slider-img.png'
-import {motion} from 'framer-motion'
-import { Link} from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
-import img from  '../../assets/images/hero-bg.png'
+import img from '../../assets/images/hero-bg.png'
 
 import styled from 'styled-components'
+import AppAbout from './about'
+import AppFeature from './feature'
+import AppWorks from './works'
+import AppContact from './contact'
+import FooterLayout from '../../components/footer/footer.component'
+
+import { BackTop } from 'antd';
 
 const Homepage = () => {
   return (
@@ -16,6 +23,7 @@ const Homepage = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
     >
+      <BackTop />
       <Hero>
         <div className="hero_area">
           <section className=" slider_section ">
@@ -36,10 +44,7 @@ const Homepage = () => {
                             Cách đơn giản nhất để cộng tác nhóm từ xa.
                           </p>
                           <div className="btn-box">
-                          
                             <Link className="btn-1" to="/sign">Getting Started</Link>
-                              
-                          
                           </div>
                         </div>
                       </div>
@@ -56,6 +61,11 @@ const Homepage = () => {
           </section>
         </div>
       </Hero>
+      <AppAbout/>
+      <AppFeature/>
+      <AppWorks/>
+      <AppContact/>
+      <FooterLayout/>
     </motion.div>
   )
 }
@@ -64,7 +74,7 @@ export default Homepage
 
 const Hero = styled.div`
     & {
-      margin-bottom: 50rem;
+      /* margin-bottom: 50rem; */
       height: 84vh;
       background: -webkit-gradient(linear, left top, right top, from(#864ddf), to(#203376));
       background: linear-gradient(to right, #864ddf, #203376);

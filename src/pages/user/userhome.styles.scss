@@ -10,3 +10,20 @@
         flex: 9;
     }
 }
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+    color: #5e43b6  !important;
+}
+
+.ant-tabs-ink-bar {
+    background: #5e43b6  !important;
+}
+
+.ant-tabs-tab-btn{
+    font-size: 13px;
+    span {
+        svg {
+            padding-right: 3px;
+        }
+    }
+}

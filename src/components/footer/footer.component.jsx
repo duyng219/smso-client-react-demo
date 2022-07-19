@@ -13,30 +13,22 @@ import { motion } from 'framer-motion'
 
 import './footer.styles.scss'
 
-const Footer = () => {
+const FooterLayout = () => {
     return (
-        <motion.div
-            animate={{ opacity: 1 }}
-            initial={{ opacity: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-        >
             <div className="footer-container">
                 <div className="footer-container-sub">
                     <div className="copyright">
                         <p className="copyright-p">© 2022 - Group 03</p>
                     </div>
                     <div className="social">
-                        <a href="/" className="support">Contact Us</a>
-                        <a href="/" className="face">f</a>
-                        <a href="/" className="tweet">t</a>
-                        <a href="/" className="linked">in</a>
+                        <a href="/" className="support"><p>Contact Us</p></a>
+                        <a href="/" className="face"><p>f</p></a>
+                        <a href="/" className="tweet"><p>t</p></a>
+                        <a href="/" className="linked"><p>in</p></a>
                     </div>
                 </div>
             </div>
-        </motion.div>
-
     )
 }
 
-export default Footer
+export default FooterLayout

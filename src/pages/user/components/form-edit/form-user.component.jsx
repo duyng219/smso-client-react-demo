@@ -1,14 +1,19 @@
 import React from 'react'
 import './form-user.styles.scss'
 import styled from 'styled-components'
-import { Button } from 'antd';
-
+import { Button, Avatar } from 'antd';
 import { Link } from 'react-router-dom'
-
 import { motion } from 'framer-motion'
+
+import { AuthContext } from '../../../../context/AuthProvider';
 
 
 const FormUser = () => {
+    const { user: {
+        displayName,
+        photoURL
+    }} = React.useContext(AuthContext)
+
     return (
         <motion.div
             animate={{ opacity: 1 }}
@@ -23,7 +28,7 @@ const FormUser = () => {
                         <div className="row">
                             <div className="col-md-4">
                                 <div className="profile-img">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt='img' />
+                                    <img src={photoURL} alt='img' />
                                     <div className="file btn btn-lg btn-primary">
                                         Change Photo
                                         <input type="file" name="file" />
@@ -33,7 +38,7 @@ const FormUser = () => {
                             <div className="col-md-6">
                                 <div className="profile-head">
                                     <h5>
-                                        Duy Huu Nguyen
+                                        {displayName}
                                     </h5>
                                     <h6>
                                         Role User and Admin

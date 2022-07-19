@@ -7,6 +7,7 @@ import img from '../../assets/images/welcome.png'
 import './about.styles.scss'
 
 import { Link} from 'react-router-dom'
+import FooterLayout from '../../components/footer/footer.component'
 
 const About = () => {
     return (
@@ -43,6 +44,7 @@ const About = () => {
                         </div>
                     </div>
                 </section>
+                <FooterLayout/>
         </Hero>
 
         </motion.div >

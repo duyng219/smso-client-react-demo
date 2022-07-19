@@ -4,8 +4,10 @@
 //     background: -webkit-gradient(linear, left top, right top, from(#864ddf), to(#203376));
 //     background: linear-gradient(to right, #864ddf, #203376);
 // }
-
-
+.ant-back-top {
+    // width: 6px;
+    height: 70px;
+}
 
 .sub_page .hero_area {
     height: auto;
@@ -106,14 +108,13 @@ a:focus {
     background-image: url(../../assets/images/menu.png);
     background-size: 40px;
 }
-/*end header section*/
 
+/*end header section*/
 
 /* slider section */
 .logo-bg {
-    width: 3rem;
+    width: 65px;
 }
-
 
 .slider_section {
     color: #f9fcfb;
@@ -176,7 +177,6 @@ a:focus {
     background-color: #feb543;
 }
 
-
 .slider_section ol.carousel-indicators {
     margin: 0;
     width: 75px;
@@ -235,5 +235,118 @@ a:focus {
 .carousel-item {
     .container {
         padding-top: 13rem;
+    }
+}
+
+.aboutBlock .contentHolder {
+    text-align: center;
+    margin: 0 0 50px;
+}
+
+.aboutBlock .icon {
+    font-size: 40px;
+    color: #1890ff;
+    margin: 0 0 10px;
+}
+
+.aboutBlock .content {
+    text-align: center;
+}
+
+.hero_area-custom {
+    margin-top: 10rem;
+    margin-bottom: 10rem;
+    padding-bottom: 10rem;
+}
+
+/* 
+title holder
+------------
+*/
+.titleHolder {
+    text-align: center;
+    position: relative;
+    padding: 0 0 20px;
+    margin: 0 0 40px;
+    
+    p {
+        font-weight: 600;
+    }
+}
+
+.titleHolder:after {
+    transform: translateX(-50%);
+    content: '';
+    background: #1890ff;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: 3px;
+    width: 50px;
+}
+
+.titleHolder h2 {
+    font-size: 28px;
+    margin: 0;
+}
+
+.contentHolder {
+    p {
+        font-weight: 500;
+    }
+}
+
+/* 
+how it works
+------------
+*/
+.worksBlock {
+    background: url('../../assets/images/bg-works3.jpg') no-repeat;
+    background-position: 50% 0;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #fff;
+    position: relative;
+    height: 24rem;
+}
+
+.worksBlock:before {
+    content: '';
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.worksBlock h2 {
+    color: #fff;
+}
+
+.worksBlock .contentHolder {
+    text-align: center;
+    .icon {
+        font-size: 131px;
+        margin: -42px 0px 0px -41px;
+    }
+}
+
+.worksBlock .contentHolder button {
+    font-size: 40px;
+    line-height: 1;
+    background: none;
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 30px;
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+}
+
+.list-inline-ul {
+    list-style:none;
+    li {
+        text-decoration: none;
     }
 }

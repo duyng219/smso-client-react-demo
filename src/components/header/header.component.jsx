@@ -1,32 +1,83 @@
 import React from 'react'
-import { Navbar, Container, Nav, FormControl, Form } from 'react-bootstrap'
-import logo from '../../assets/logo/images-removebg-preview.png'
+import { Navbar, Container, Nav } from 'react-bootstrap'
+import logo from '../../assets/logo/SMSo2.png'
 import './header.styles.scss'
 
 import userimg from '../../assets/images/user/65e06fe2f34b33156a5a.jpg'
-import userimgfb from '../../assets/images/user/images.png'
-
+import userimgfb from '../../assets/images/user/images1.png'
 
 import history from "../../history";
-
 
 import { Link } from 'react-router-dom'
 
 import { NotificationDuration, Notification } from '../antd/notification/notification.component'
+import { Dropdown, Menu, Avatar, Tooltip } from 'antd';
 
+//ICON MUI
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices';
+import LogoutIcon from '@mui/icons-material/Logout';
+import SelectLanguage from './languageSelect.component'
+
+import { AuthContext } from '../../context/AuthProvider';
+import styled from 'styled-components'
+
+const buttonRemove = styled.button`
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+`
 
 const Header = () => {
+    const { user: {
+        displayName,
+        photoURL
+    }} = React.useContext(AuthContext)
+
+    const menuAdmin = (
+        <Menu
+            items={[
+                {
+                    key: '1',
+                    label: (
+                        <Link to={"/admin"}><AccountCircleIcon fontSize="small" />Profile</Link>
+                    ),
+                },
+                {
+                    key: '2',
+                    label: (
+                        <Link to={"/settings"}><MiscellaneousServicesIcon fontSize="small"/> Settings</Link>
+                    ),
+                },
+                {
+                    key: '3',
+                    label: (
+                        <buttonRemove><LogoutIcon onClick={() => handleLogoutfb()} fontSize="small"/>Log out</buttonRemove>
+                    ),
+                },
+            ]}
+        />
+    );
+
     const userInfo = JSON.parse(localStorage.getItem("smso-user-logged"));
     const userInfoFb = JSON.parse(localStorage.getItem("smso-user-logged-fb"));
 
     const handleLogout = async () => {
         await localStorage.removeItem("smso-user-logged");
-        history.push("/");
+        // history.push("/");
+        window.location.href = '/'
+
     };
 
     const handleLogoutfb = async () => {
         await localStorage.removeItem("smso-user-logged-fb");
-        history.push("/");
+        // history.push("/");
+        window.location.href = '/'
+
     };
 
     const hanldeClick = (e) => {
@@ -48,70 +99,24 @@ const Header = () => {
                         >
 
                             <Link to={"/"}><Nav.Link href="#1">Home</Nav.Link></Link>
-
-                            {/* <Nav.Link href="#1">
-                                <Link to={"/"}>
-                                    Home
-                                </Link>
-                            </Nav.Link> */}
-
-
                             <Link to={"/about"}><Nav.Link href="#2">About us</Nav.Link></Link>
-                            {/* <Nav.Link href="#2">
-                                <Link to={"/about"}>
-                                    About us
-                                </Link>
-                            </Nav.Link> */}
-
-
                             <Link to={"/contact"}><Nav.Link href="#3">Contact</Nav.Link></Link>
                             <Link to={"/users/form/:id"}><Nav.Link href="#4">Form</Nav.Link></Link>
                             <Link to={"/users"}><Nav.Link href="#8">usertest</Nav.Link></Link>
-                            {/* <Nav.Link href="#3">
-                                <Link to={"/contact"}>
-                                    Contact
-                                </Link>
-                            </Nav.Link> */}
-
-
-                            {/* <NavDropdown title="Link" id="navbarScrollingDropdown">
-                                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action5">
-                                    Something else here
-                                </NavDropdown.Item>
-                            </NavDropdown> */}
-                            {/* <Nav.Link href="#" disabled>
-                                Link
-                            </Nav.Link> */}
-
-
-                            {/* <Nav.Link href="#4">
-                                <Link to={"/sign"}>
-                                    Sign
-                                </Link>
-                            </Nav.Link> */}
-
+                            <Link to={"/admin"}><Nav.Link href="#8">admintest</Nav.Link></Link>
+                            
                         </Nav>
-                        <Form className="d-flex">
-                            <FormControl
-                                type="search"
-                                placeholder="Search"
-                                className="me-2"
-                                aria-label="Search"
-                            />
-                            <button onClick={hanldeClick} className='customButton' >Search</button>
-                        </Form>
+                    
 
+                        <SelectLanguage />
 
                         {(!userInfo && !userInfoFb) && (
-                            <Link to={"/sign"}><Nav.Link href="#5"><button className='customButton custom-signin' >Sign <br/> In</button></Nav.Link></Link>
+                            <Link to={"/sign"}><Nav.Link href="#5"><button className='customButton custom-signin' >Sign <br /> In</button></Nav.Link></Link>
                         )}
 
-                        {userInfo && (
+                        {/* {userInfo && (
                             <Nav.Link href="/"><button onClick={handleLogout} className='customButton custom-signin custom-logout' >Log out</button></Nav.Link>
-                        )}
+                        )} */}
 
                         {userInfo?.userRoles[0] && (
                             <Link to={"/users"}>
@@ -133,30 +138,37 @@ const Header = () => {
                             <Link to={"/sign"}><Nav.Link href="#5"><button className='customButton custom-signin' >Sign <br/> In</button></Nav.Link></Link>
                         )} */}
 
-                        {userInfoFb && (
+                        {/* {userInfoFb && (
                             <Nav.Link href="/"><button onClick={handleLogoutfb} className='customButton custom-signin custom-logout' >Log out</button></Nav.Link>
-                        )}
+                        )} */}
 
                         {userInfoFb?.email && (
-                            <Link to={"/users"}>
+                            <Dropdown
+                                trigger={['click']}
+                                overlay={menuAdmin}
+                                placement="bottomRight"
+                                arrow={{
+                                    pointAtCenter: true,
+                                }}
+                            >
+                                {/* <Link to={"/users"}> */}
                                 <Nav.Link href="#6">
-                                    <button className='button-user' >
-                                        <div className="item-user">
-                                            <img
-                                                src={userimgfb}
-                                                alt=""
-                                                className="avatar-user"
-                                            />
-                                        </div>
-                                    </button>
+                                    <Tooltip placement="bottomRight" title={displayName}>
+                                        <button className='button-user' >
+                                            <Avatar src={photoURL} >
+                                                {photoURL ? '' : displayName?.charAt(1)?.toUpperCase()}
+                                            </Avatar>
+                                        </button>
+                                    </Tooltip>
                                 </Nav.Link>
-                            </Link>
+                                {/* </Link> */}
+                            </Dropdown>
                         )}
 
                         {userInfo?.userRoles[1] && (
                             <Link to={"/admin-profile"}><Nav.Link href="#7"><button className='customButton' >Admin</button></Nav.Link></Link>
                         )}
-                        
+
                     </Navbar.Collapse>
 
                 </Container>
@@ -165,6 +177,39 @@ const Header = () => {
 
     )
 }
+
+
+
+const menuUsers = (
+    <Menu
+        items={[
+            {
+                key: '1',
+                label: (
+                    <a target="_blank" rel="noopener noreferrer" href="/">
+                        <AccountCircleIcon /> Profile
+                    </a>
+                ),
+            },
+            {
+                key: '2',
+                label: (
+                    <a target="_blank" rel="noopener noreferrer" href="/">
+                        <MiscellaneousServicesIcon /> Settings
+                    </a>
+                ),
+            },
+            {
+                key: '3',
+                label: (
+                    <a target="_blank" rel="noopener noreferrer" href="/">
+                        <LogoutIcon /> Logout
+                    </a>
+                ),
+            },
+        ]}
+    />
+);
 
 
 export default Header

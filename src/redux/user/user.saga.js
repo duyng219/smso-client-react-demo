@@ -6,6 +6,7 @@ import api from "../../api/client";
 import { Notification, NotificationDuration } from "../../components/antd/notification/notification.component";
 
 import history from "../../history";
+import { push } from 'react-router-redux'; 
 
 /*
   Saga là một middleware :
@@ -24,19 +25,21 @@ const callAPILogin = async (loginInfo) => {
 export function* login(loginInfo) {
   try {
     yield put(signInProcessing());
-    yield delay(5000);
     const res = yield call(callAPILogin, loginInfo);
     console.log("res: ", res);
     localStorage.setItem("token", res.data.token);
     localStorage.setItem("refreshToken", res.data.requestToken);
     localStorage.setItem("smso-user-logged", JSON.stringify(res.data));
     Notification("success", "Logged in successfully", "top")
-    yield delay(5000);
+    yield delay(2000);
     window.location.href = '/'
     yield put(signInSuccess(res.data));
     // history.push("/");
   } catch (error) {
     Notification("warning", "You have wrong email or password", "top")
+    yield delay(2000);
+    window.location.href = '/sign'
+
     yield put(signInFailure(error));
   }
 }
@@ -62,13 +65,17 @@ const callAPIRegister = async (registerInfo) => {
 export function* register (registerInfo) {
   try {
     yield put(signUpProcessing());
-    yield delay(5000);
+    yield delay(2000);
     const res = yield call(callAPIRegister, registerInfo.payload);
     console.log("res: ", res);
+    
     NotificationDuration("success", "You have successfully registered", "top")
+    window.location.href = '/'
   }
   catch (error) {
-    NotificationDuration("warning", "You have wrong email or password", "top")
+    NotificationDuration("warning", "You have failed to register", "top")
+    yield delay(2000);
+    window.location.href = '/sign'
     yield put(signUpFailure(error));
   }
 }

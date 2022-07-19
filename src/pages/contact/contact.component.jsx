@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 
 import styled from 'styled-components'
 import './contact.styles.scss'
+import FooterLayout from '../../components/footer/footer.component'
 
 const Contact = () => {
   return (
@@ -57,13 +58,14 @@ const Contact = () => {
           </div>
         </section>
       </Hero>
+        <FooterLayout/>
     </motion.div >
   )
 }
 
 const Hero = styled.div`
 margin-top: 5rem;
-    margin-bottom: 198px;
+    /* margin-bottom: 14rem; */
 `
 
 

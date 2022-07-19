@@ -11,6 +11,7 @@ import './View.styles.scss'
 import SubForm from '../components/subForm/subForm.component'
 import UserHome from '../pages/user/userhome.component'
 import FormEditUser from '../pages/user/components/form-edit/form-edit-user.component'
+import AdminHome from '../pages/admin/adminhome.component'
 
 const View = () => {
     const location = useLocation()
@@ -31,6 +32,7 @@ const View = () => {
 
 
                     <Route path='/users/edit-user:id' element={<FormEditUser/>} />
+                    <Route path='/admin' element={<AdminHome/>} />
 
 
                 {/* <Route path='/demologin' element={<LoginDemo/>} /> */}
