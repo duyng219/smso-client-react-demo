@@ -62,7 +62,7 @@ const AppContact = () => {
 }
 
 const Hero = styled.div`
-    padding-bottom: 10rem;
+    padding-bottom: 8rem;
 `
 
 

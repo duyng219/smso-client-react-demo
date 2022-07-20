@@ -130,7 +130,7 @@ const SignIn = ({ user, login, status }) => {
                     <div className="Container-signInFbOrGg">
                         <p>Sign in with Facebook or Google</p>
                         <div className="signInFbOrGg">
-                            <Button type="button" onClick={signInWithGoogle}><GoogleIcon type="button" onClick={signInWithGoogle} isGoogleSignIn></GoogleIcon></Button>
+                            <Button type="button" onClick={signInWithGoogle}><GoogleIcon type="button" onClick={signInWithGoogle}></GoogleIcon></Button>
                             <Button type="button" onClick={handleFbLogin}><FacebookIcon type="button" onClick={signInWithGoogle}></FacebookIcon></Button>
                         </div>
                     </div>

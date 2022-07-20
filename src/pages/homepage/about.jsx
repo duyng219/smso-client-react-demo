@@ -47,7 +47,7 @@ const AppAbout = () => {
                             <p>About our membership and app content</p>
                         </div>
                         <div className="contentHolder">
-                            <p>As we understand that the Project of Online SMS has its environment that closely simulates the texting apps like Instagram and Messenger. It is a friendly play field for your social life, a convenient tool that allows you to</p>
+                            <p>As we understand that the Project of Online SMS has its environment that closely simulates the texting apps like Instagram and Messenger. <br/> It is a friendly play field for your social life, a convenient tool that allows you to</p>
                             <ul className="list-inline-ul">
                                 <li><i>Register as a user with a personal contact number</i></li>
                                 <li><i>Edit own personal profiles</i></li>
@@ -87,6 +87,6 @@ const AppAbout = () => {
 export default AppAbout
 
 const Hero = styled.div`
-    margin-top: 10rem;
-    margin-bottom: 12rem;
+    margin-top: 6rem;
+    margin-bottom: 8rem;
 `

@@ -111,5 +111,5 @@ const AppFeature = () => {
 export default AppFeature
 
 const Hero = styled.div`
-    margin-bottom: 10rem;
+    margin-bottom: 8rem;
 `

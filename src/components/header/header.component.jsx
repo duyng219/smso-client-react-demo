@@ -21,6 +21,8 @@ import SelectLanguage from './languageSelect.component'
 
 import { AuthContext } from '../../context/AuthProvider';
 import styled from 'styled-components'
+import { useDispatch } from "react-redux";
+import { handleLogoutfb } from '../../redux/logout-localstore/logoutLocalStore'
 
 const buttonRemove = styled.button`
     background: none;
@@ -33,10 +35,32 @@ const buttonRemove = styled.button`
 `
 
 const Header = () => {
+    const dispatch = useDispatch();
+
     const { user: {
         displayName,
         photoURL
     }} = React.useContext(AuthContext)
+
+    
+
+    // const handleLogout =  () => {
+    //     localStorage.removeItem("smso-user-logged");
+    //     // history.push("/");
+    //     window.location.href = '/'
+
+    // };
+
+    // const hanldeClick = (e) => {
+    //     e.preventDefault()
+    //     Notification("success", "Function Search", "top")
+    // }
+
+
+    const handleLog = async (e) => {
+        e.preventDefault();
+        dispatch(handleLogoutfb());
+    };
 
     const menuAdmin = (
         <Menu
@@ -56,7 +80,7 @@ const Header = () => {
                 {
                     key: '3',
                     label: (
-                        <buttonRemove><LogoutIcon onClick={() => handleLogoutfb()} fontSize="small"/>Log out</buttonRemove>
+                        <button><LogoutIcon onClick={handleLog} fontSize="small"/>Log out</button>
                     ),
                 },
             ]}
@@ -66,24 +90,6 @@ const Header = () => {
     const userInfo = JSON.parse(localStorage.getItem("smso-user-logged"));
     const userInfoFb = JSON.parse(localStorage.getItem("smso-user-logged-fb"));
 
-    const handleLogout = async () => {
-        await localStorage.removeItem("smso-user-logged");
-        // history.push("/");
-        window.location.href = '/'
-
-    };
-
-    const handleLogoutfb = async () => {
-        await localStorage.removeItem("smso-user-logged-fb");
-        // history.push("/");
-        window.location.href = '/'
-
-    };
-
-    const hanldeClick = (e) => {
-        e.preventDefault()
-        Notification("success", "Function Search", "top")
-    }
 
     return (
         <div className="header">
@@ -104,6 +110,7 @@ const Header = () => {
                             <Link to={"/users/form/:id"}><Nav.Link href="#4">Form</Nav.Link></Link>
                             <Link to={"/users"}><Nav.Link href="#8">usertest</Nav.Link></Link>
                             <Link to={"/admin"}><Nav.Link href="#8">admintest</Nav.Link></Link>
+                            {/* <button onClick={handleLog}>logout</button> */}
                             
                         </Nav>
                     
