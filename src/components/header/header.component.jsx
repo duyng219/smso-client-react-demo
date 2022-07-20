@@ -1,14 +1,18 @@
 import React from 'react'
-import { Navbar, Container, Nav } from 'react-bootstrap'
+import { useDispatch } from "react-redux";
+import { AuthContext } from '../../context/AuthProvider';
+import { handleLogoutfb, handleLogoutGg } from '../../redux/logout-localstore/logoutLocalStore'
+import history from "../../history";
+import { Link } from 'react-router-dom'
+
+import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap'
 import logo from '../../assets/logo/SMSo2.png'
 import './header.styles.scss'
+import styled from 'styled-components'
 
 import userimg from '../../assets/images/user/65e06fe2f34b33156a5a.jpg'
 import userimgfb from '../../assets/images/user/images1.png'
 
-import history from "../../history";
-
-import { Link } from 'react-router-dom'
 
 import { NotificationDuration, Notification } from '../antd/notification/notification.component'
 import { Dropdown, Menu, Avatar, Tooltip } from 'antd';
@@ -19,10 +23,6 @@ import MiscellaneousServicesIcon from '@mui/icons-material/MiscellaneousServices
 import LogoutIcon from '@mui/icons-material/Logout';
 import SelectLanguage from './languageSelect.component'
 
-import { AuthContext } from '../../context/AuthProvider';
-import styled from 'styled-components'
-import { useDispatch } from "react-redux";
-import { handleLogoutfb } from '../../redux/logout-localstore/logoutLocalStore'
 
 const buttonRemove = styled.button`
     background: none;
@@ -36,6 +36,9 @@ const buttonRemove = styled.button`
 
 const Header = () => {
     const dispatch = useDispatch();
+    const userInfo = JSON.parse(localStorage.getItem("smso-user-logged"));
+    const userInfoFb = JSON.parse(localStorage.getItem("smso-user-logged-fb"));
+    const userInfoGg = JSON.parse(localStorage.getItem("smso-user-logged-gg"));
 
     const { user: {
         displayName,
@@ -57,10 +60,7 @@ const Header = () => {
     // }
 
 
-    const handleLog = async (e) => {
-        e.preventDefault();
-        dispatch(handleLogoutfb());
-    };
+    
 
     const menuAdmin = (
         <Menu
@@ -80,16 +80,36 @@ const Header = () => {
                 {
                     key: '3',
                     label: (
-                        <button><LogoutIcon onClick={handleLog} fontSize="small"/>Log out</button>
+                        <buttonRemove onClick={() => {dispatch(handleLogoutfb())}}><LogoutIcon  fontSize="small"/>Log out</buttonRemove>
                     ),
                 },
             ]}
         />
     );
-
-    const userInfo = JSON.parse(localStorage.getItem("smso-user-logged"));
-    const userInfoFb = JSON.parse(localStorage.getItem("smso-user-logged-fb"));
-
+    const menuUserGg = (
+        <Menu
+        items={[
+            {
+                key: '1',
+                label: (
+                    <Link to={"/users"}><AccountCircleIcon fontSize="small" />Profile</Link>
+                ),
+            },
+            {
+                key: '2',
+                label: (
+                    <Link to={"/settings"}><MiscellaneousServicesIcon fontSize="small"/> Settings</Link>
+                ),
+            },
+            {
+                key: '3',
+                label: (
+                    <buttonRemove onClick={() => {dispatch(handleLogoutGg())}}><LogoutIcon  fontSize="small"/>Log out GG</buttonRemove>
+                ),
+            },
+        ]}
+    />
+    );
 
     return (
         <div className="header">
@@ -107,6 +127,19 @@ const Header = () => {
                             <Link to={"/"}><Nav.Link href="#1">Home</Nav.Link></Link>
                             <Link to={"/about"}><Nav.Link href="#2">About us</Nav.Link></Link>
                             <Link to={"/contact"}><Nav.Link href="#3">Contact</Nav.Link></Link>
+
+                            {/* <NavDropdown  title="Click me" id="navbarScrollingDropdown">
+                                <NavDropdown.Item  href="#about">item 1</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="#action4">
+                                    item 2
+                                </NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item href="#action5">
+                                    item 3
+                                </NavDropdown.Item>
+                            </NavDropdown> */}
+
                             <Link to={"/users/form/:id"}><Nav.Link href="#4">Form</Nav.Link></Link>
                             <Link to={"/users"}><Nav.Link href="#8">usertest</Nav.Link></Link>
                             <Link to={"/admin"}><Nav.Link href="#8">admintest</Nav.Link></Link>
@@ -117,7 +150,7 @@ const Header = () => {
 
                         <SelectLanguage />
 
-                        {(!userInfo && !userInfoFb) && (
+                        {(!userInfo && !userInfoFb && !userInfoGg) && (
                             <Link to={"/sign"}><Nav.Link href="#5"><button className='customButton custom-signin' >Sign <br /> In</button></Nav.Link></Link>
                         )}
 
@@ -172,6 +205,29 @@ const Header = () => {
                             </Dropdown>
                         )}
 
+                        {userInfoGg?.email && (
+                            <Dropdown
+                                trigger={['click']}
+                                overlay={menuUserGg}
+                                placement="bottomRight"
+                                arrow={{
+                                    pointAtCenter: true,
+                                }}
+                            >
+                                {/* <Link to={"/users"}> */}
+                                <Nav.Link href="#6">
+                                    <Tooltip placement="bottomRight" title={displayName}>
+                                        <button className='button-user' >
+                                            <Avatar src={photoURL} >
+                                                {photoURL ? '' : displayName?.charAt(1)?.toUpperCase()}
+                                            </Avatar>
+                                        </button>
+                                    </Tooltip>
+                                </Nav.Link>
+                                {/* </Link> */}
+                            </Dropdown>
+                        )}
+
                         {userInfo?.userRoles[1] && (
                             <Link to={"/admin-profile"}><Nav.Link href="#7"><button className='customButton' >Admin</button></Nav.Link></Link>
                         )}
@@ -187,36 +243,7 @@ const Header = () => {
 
 
 
-const menuUsers = (
-    <Menu
-        items={[
-            {
-                key: '1',
-                label: (
-                    <a target="_blank" rel="noopener noreferrer" href="/">
-                        <AccountCircleIcon /> Profile
-                    </a>
-                ),
-            },
-            {
-                key: '2',
-                label: (
-                    <a target="_blank" rel="noopener noreferrer" href="/">
-                        <MiscellaneousServicesIcon /> Settings
-                    </a>
-                ),
-            },
-            {
-                key: '3',
-                label: (
-                    <a target="_blank" rel="noopener noreferrer" href="/">
-                        <LogoutIcon /> Logout
-                    </a>
-                ),
-            },
-        ]}
-    />
-);
+
 
 
 export default Header

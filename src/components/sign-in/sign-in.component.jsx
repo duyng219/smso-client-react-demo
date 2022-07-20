@@ -22,7 +22,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 
 
 
-// const googleProvider = new firebase.auth.GoogleAuthProvider();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 const fbProvider = new firebase.auth.FacebookAuthProvider();
 
 const SignIn = ({ user, login, status }) => {
@@ -77,15 +77,21 @@ const SignIn = ({ user, login, status }) => {
 
     //LOGIN WITH GOOGLE
     const signInWithGoogle = async () => {
-        // Retrieve Google provider object
-        const provider = new firebase.auth.GoogleAuthProvider();
-        // Set language to the default browser preference
-        firebase.auth().useDeviceLanguage();
-        // Start sign in process
-        try {
-            await firebase.auth().signInWithPopup(provider);
-        } catch (error) {
-            console.log(error.message);
+        const { additionalUserInfo, user } = await auth.signInWithPopup(googleProvider);
+
+        // Check data and import in to firebase or post api
+        if (additionalUserInfo?.isNewUser) {
+            addDocument('users', {
+                    displayName: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL,
+                    uid: user.displayName,
+                    providerId: additionalUserInfo.providerId,
+            })
+            console.log({ additionalUserInfo })
+            localStorage.setItem("smso-user-logged-gg", JSON.stringify(additionalUserInfo.profile));
+            window.location.href = '/'
+
         }
     }
     const signOut = async () => {
@@ -130,8 +136,8 @@ const SignIn = ({ user, login, status }) => {
                     <div className="Container-signInFbOrGg">
                         <p>Sign in with Facebook or Google</p>
                         <div className="signInFbOrGg">
-                            <Button type="button" onClick={signInWithGoogle}><GoogleIcon type="button" onClick={signInWithGoogle}></GoogleIcon></Button>
-                            <Button type="button" onClick={handleFbLogin}><FacebookIcon type="button" onClick={signInWithGoogle}></FacebookIcon></Button>
+                            <Button type="button" onClick={signInWithGoogle}><GoogleIcon type="button"></GoogleIcon></Button>
+                            <Button type="button" onClick={handleFbLogin}><FacebookIcon type="button"></FacebookIcon></Button>
                         </div>
                     </div>
                     

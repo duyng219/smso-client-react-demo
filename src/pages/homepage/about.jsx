@@ -39,8 +39,8 @@ const AppAbout = () => {
     return (
         
             <Hero>
-            <div className="container">
-                <div id='about' className='block aboutBlock'>
+            <div id='about' className="container">
+                <div  className='block aboutBlock'>
                     <div className="">
                         <div className="titleHolder">
                             <h2>About Us</h2>

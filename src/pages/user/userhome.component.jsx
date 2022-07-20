@@ -38,8 +38,9 @@ const UserHome = () => {
 
     const userInfo = JSON.parse(localStorage.getItem("smso-user-logged"));
     const userInfoFb = JSON.parse(localStorage.getItem("smso-user-logged-fb"));
+    const userInfoGg = JSON.parse(localStorage.getItem("smso-user-logged-gg"));
 
-    if (!userInfo || !userInfoFb) {
+    if (!userInfo && !userInfoFb && !userInfoGg) {
         Notification("error", "Không có quyền truy cập", "top")
         setTimeout(function() {
             window.location.href = '/sign'
@@ -90,7 +91,7 @@ const UserHome = () => {
                         tab={
                             <span>
                                 {<MarkUnreadChatAltIcon />}
-                                Chat SMSO
+                                Chat
                             </span>
                         }
                     key="message"
@@ -102,7 +103,7 @@ const UserHome = () => {
                         tab={
                             <span>
                                 {<ForumIcon />}
-                                Chat SMSO All
+                                Chat Rooms
                             </span>
                         }
                     key="message-all"

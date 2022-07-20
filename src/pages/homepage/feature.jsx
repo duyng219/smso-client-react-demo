@@ -85,7 +85,7 @@ const AppFeature = () => {
                                 hoverable
                                 cover={<img alt="Item" src={image5}/>}
                             >
-                                <Meta title="Unlimited Features"s/>
+                                <Meta title="Others.."s/>
                             </Card>
                         </Link>
                     </Col>
@@ -95,7 +95,7 @@ const AppFeature = () => {
                                 hoverable
                                 cover={<img alt="Item" src={image6}/>}
                             >
-                                <Meta title="Advanced Options"s/>
+                                <Meta title="Others.."s/>
                             </Card>
                         </Link>
                     </Col>

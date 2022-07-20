@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { db, auth } from '../../../../firebase/config'
+import './chatSMO.css'
 
 import { motion } from 'framer-motion'
 
 import styled from 'styled-components'
 import SidebarSMSO from './sidebar-chat-smso/sidebar.component'
+import ChatContent from './chat-content/chatcontent.component'
+import EditArea from './edit-area/editarea.component'
 
 const ChatSMSOnline = ({user = null, db = null}) => {
 
@@ -19,9 +22,21 @@ const ChatSMSOnline = ({user = null, db = null}) => {
             <Hero>
                 <SessionDiv>
                     <PaddingDiv>
-                        <SidebarSMSO/>
-                        {/* This is ChatSMSOnline user */}
-                        
+                        <div classname="container">
+                            <div className="app">
+                                <div className="wrapper">
+                                    <div className='sidebar-container'>
+                                        <SidebarSMSO/>
+                                    </div>
+                                    <div className='chat-container'>
+                                        <ChatContent/>
+                                    </div>
+                                    <div className='edit-area-container'>
+                                        <EditArea/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </PaddingDiv>
                 </SessionDiv>
             </Hero>
@@ -36,7 +51,7 @@ const Hero = styled.div`
 `
 
 const PaddingDiv = styled.div`
-    padding: 0rem 5rem;
+    padding: 0rem 0rem 0rem 0rem;
 `
 
 const SessionDiv = styled.div`

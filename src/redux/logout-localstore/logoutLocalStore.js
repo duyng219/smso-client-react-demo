@@ -4,18 +4,33 @@ import { Notification, NotificationDuration } from "../../components/antd/notifi
 export const handleLogoutfb = (() => {
     // const userInfo = JSON.parse(localStorage.getItem("smso-user-logged"));
     const userInfoFb = JSON.parse(localStorage.getItem("smso-user-logged-fb"));
-    try {
-        if (userInfoFb) {
+
+        if (userInfoFb)  {
             localStorage.removeItem("smso-user-logged-fb");
             // setTimeout(function() {
                 window.location.href = '/sign'
                 // history.push("/sign")
             // }, 1000);
-            Notification("success", "Đăng xuất thành công!!!", "top")
+            // Notification("success", "Đăng xuất thành công!!!", "top")
         } else {
             Notification("error", "Not Found", "top")
         }
-        } catch (error) {
-            Notification("error", error.message);
     }
-});
+);
+
+export const handleLogoutGg = (() => {
+    // const userInfo = JSON.parse(localStorage.getItem("smso-user-logged"));
+    const userInfoGg = JSON.parse(localStorage.getItem("smso-user-logged-gg"));
+
+        if (userInfoGg)  {
+            localStorage.removeItem("smso-user-logged-gg");
+            // setTimeout(function() {
+                window.location.href = '/sign'
+                // history.push("/sign")
+            // }, 1000);
+            // Notification("success", "Đăng xuất thành công!!!", "top")
+        } else {
+            Notification("error", "Not Found", "top")
+        }
+    }
+);

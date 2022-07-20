@@ -1,20 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
-import image1 from '../../../../assets/images/modern-design.jpg';
-import image2 from '../../../../assets/images/clean-design.jpg';
-import image3 from '../../../../assets/images/great-support.jpg';
-import image4 from '../../../../assets/images/easy-customise.jpg';
-import image5 from '../../../../assets/images/unlimited-features.jpg';
-import image6 from '../../../../assets/images/advanced-option.jpg';
+import image1 from '../../../../assets/images/service1.png';
+import image2 from '../../../../assets/images/service22.jpg';
+import image3 from '../../../../assets/images/service33.png';
+import image4 from '../../../../assets/images/service44.jpg';
+import image5 from '../../../../assets/images/service55.png';
+import image6 from '../../../../assets/images/service55.png';
 import { Row, Col } from 'antd'
 import { Card } from 'antd';
 import history from '../../../../history';
 import { Link } from 'react-router-dom'
+import './homeUser.styles.scss'
 
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
-
 
 
 
@@ -32,68 +32,77 @@ const HomeUser = () => {
             <Hero>
                 <SessionDiv>
                     <PaddingDiv>
-                        <div className="container">
-                        <div id='feature' className='block featureBlock bgGray'>
-                            <div className='container-fluid'>
-                                <div className="titleHolder">
-                                    <h2>Key Features and Benefits</h2>
-                                    <p>Obcaecati consequatur libero repudiandae, aperiam itaque laborum!</p>
-                                </div>
-                                <Row gutter={[16, 16]}>
-                                    <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                        <Link to={"users/news"}>
-                                        <Card
+                        <div classname="container">
+                            <div id='feature' className='block featureBlock bgGray'>
+                                <div className='container-fluid'>
+                                    <div className="titleHolder-user">
+                                        {/* <h2>Key Features and Benefits</h2> */}
+                                        <p>What services are available in our app!</p>
+                                    </div>
+                                    <Row gutter={[16, 16]}>
+                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
+                                            {/* <Link to={"/users"}> */}
+                                            <Card 
                                                 hoverable
                                                 cover={<img alt="Item" src={image1} />}
                                             >
-                                                <Meta title="Modern Design" s />
+                                                <Meta title="News" s />
                                             </Card>
-                                        </Link>
-                                            
-                                    </Col>
-                                    <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                        <Card
-                                            hoverable
-                                            cover={<img alt="Item" src={image2} />}
-                                        >
-                                            <Meta title="Clean and Elegant" s />
-                                        </Card>
-                                    </Col>
-                                    <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                        <Card
-                                            hoverable
-                                            cover={<img alt="Item" src={image3} />}
-                                        >
-                                            <Meta title="Great Support" s />
-                                        </Card>
-                                    </Col>
-                                    <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                        <Card
-                                            hoverable
-                                            cover={<img alt="Item" src={image4} />}
-                                        >
-                                            <Meta title="Easy to customise" s />
-                                        </Card>
-                                    </Col>
-                                    <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                        <Card
-                                            hoverable
-                                            cover={<img alt="Item" src={image5} />}
-                                        >
-                                            <Meta title="Unlimited Features" s />
-                                        </Card>
-                                    </Col>
-                                    <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                        <Card
-                                            hoverable
-                                            cover={<img alt="Item" src={image6} />}
-                                        >
-                                            <Meta title="Advanced Options" s />
-                                        </Card>
-                                    </Col>
-                                </Row>
+                                            {/* </Link> */}
+                                        </Col>
+                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
+                                            <Link to={"/users"}>
+                                                <Card 
+                                                    hoverable
+                                                    cover={<img alt="Item" src={image2} />}
+                                                >
+                                                    <Meta title="Read books" s />
+                                                </Card>
+                                            </Link>
+                                        </Col>
+                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
+                                            <Link to={"/users"}>
+                                                <Card 
+                                                    hoverable
+                                                    cover={<img alt="Item" src={image3} />}
+                                                >
+                                                    <Meta title="Watch movie" s />
+                                                </Card>
+                                            </Link>
+                                        </Col>
+                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
+                                            <Link to={"/users"}>
+                                                <Card 
+                                                    hoverable
+                                                    cover={<img alt="Item" src={image4} />}
+                                                >
+                                                    <Meta title="Play online games" s />
+                                                </Card>
+                                            </Link>
+                                        </Col>
+                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
+                                            <Link to={"/users"}>
+                                                <Card 
+                                                    hoverable
+                                                    cover={<img alt="Item" src={image5} />}
+                                                >
+                                                    <Meta title="Others.." s />
+                                                </Card>
+                                            </Link>
+                                        </Col>
+                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
+                                            <Link to={"/users"}>
+                                                <Card 
+                                                    hoverable
+                                                    cover={<img alt="Item" src={image6} />}
+                                                >
+                                                    <Meta title="Others.." s />
+                                                </Card>
+                                            </Link>
+                                        </Col>
+                                    </Row>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </PaddingDiv>
                 </SessionDiv>
@@ -109,7 +118,7 @@ const Hero = styled.div`
 `
 
 const PaddingDiv = styled.div`
-    padding: 0rem 5rem;
+    padding: 1rem 7rem;
 `
 
 const SessionDiv = styled.div`
