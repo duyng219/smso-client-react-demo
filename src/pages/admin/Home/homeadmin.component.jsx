@@ -2,7 +2,7 @@ import React from 'react'
 
 const HomeAdmin = () => {
     return (
-        <div>This is a Home Admin</div>
+        <div style={{textAlign: 'center', fontSize: '17px'}}>This is a Admin Page</div>
     )
 }
 

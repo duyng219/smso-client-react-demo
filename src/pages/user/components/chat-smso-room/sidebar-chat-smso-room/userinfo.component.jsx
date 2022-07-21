@@ -34,7 +34,7 @@ export default function UserInfo() {
                 <Typography.Text className='username'>{displayName}</Typography.Text>
             </div>
             <Button onClick={() => auth.signOut()}>
-                Log out fb
+                button
             </Button>
         </WrapperStyled>
     );

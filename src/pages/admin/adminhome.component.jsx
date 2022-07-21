@@ -43,7 +43,7 @@ const AdminHome = () => {
                     <TabPane style={{ marginTop: 15 }} tab="User Management" key="2">
                         <NavLink to="/admin/user/add-user">
                             <Button style={{ marginBottom: 15 }} type="dash" danger>
-                                Add new
+                                Add new user
                             </Button>
                         </NavLink>
                         <UserManagement />
@@ -51,7 +51,7 @@ const AdminHome = () => {
                     <TabPane style={{ marginTop: 15 }} tab="Service Management" key="3">
                         <NavLink to="/admin/product/create-product">
                             <Button style={{ marginBottom: 15 }} type="dash" danger>
-                                Add new
+                                Add new services
                             </Button>
                         </NavLink>
                         {/* <ProductManagement /> */}
@@ -75,5 +75,5 @@ const AdminHome = () => {
 export default AdminHome;
 
 const Hero = styled.div`
-    margin: 1rem 10rem 0rem 10rem;
+    margin: 1rem 2rem 0rem 2rem;
 `
