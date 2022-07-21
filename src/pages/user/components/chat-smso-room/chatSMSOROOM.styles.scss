@@ -115,7 +115,7 @@ img {
     /* max-width: 1600px;
     height: 83vh; */
     /* margin: 0px 0px 0px -80px; */
-    border-radius: 10px;
+    // border-radius: 10px;
     overflow: hidden;
 }
 
@@ -458,6 +458,15 @@ img {
 .chat-msg-text img {
     max-width: 300px;
     width: 100%;
+}
+
+.form-chat-area-footer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    position: sticky;
+    bottom: 0;
+    left: 0;
 }
 
 .chat-area-footer {

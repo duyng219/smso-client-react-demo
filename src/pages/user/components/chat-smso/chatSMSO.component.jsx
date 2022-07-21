@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { db, auth } from '../../../../firebase/config'
-import './chatSMO.css'
+import './chatSMO.scss'
 
 import { motion } from 'framer-motion'
 
@@ -55,6 +55,6 @@ const PaddingDiv = styled.div`
 `
 
 const SessionDiv = styled.div`
-    border-radius: 10px;
+    /* border-radius: 10px; */
     background-color: #f5f5f5;
 `

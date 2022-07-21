@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { SendOutlined } from '@ant-design/icons'
 import { Button, Space } from 'antd'
-import InfoIcon from '@mui/icons-material/Info';
 
-const ChatContent = () => {
+const FormChatRoom = () => {
     const [loadings, setLoadings] = useState([]);
 
     const enterLoading = (index) => {
@@ -25,15 +24,13 @@ const ChatContent = () => {
         <div>
             <div className="chat-area">
                 <div className="chat-area-header">
-                    <div className="chat-area-title">
-                        <div className="">
-                            <img className="chat-msg-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKxae8Lemwby_tm6Xqj7JjF8lUiKXzjLZTd2IHhab-1Ee3NQf44NyIO5eMr0IKlpUUTC0&usqp=CAU" alt="img" /> Female
-                        </div>
-                    </div>
+                    <div className="chat-area-title">Room1</div>
                     <div className="chat-area-group">
-                        <InfoIcon/>
+                        <img className="chat-area-profile" src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png" alt="img" />
+                        <img className="chat-area-profile" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKxae8Lemwby_tm6Xqj7JjF8lUiKXzjLZTd2IHhab-1Ee3NQf44NyIO5eMr0IKlpUUTC0&usqp=CAU" alt="img" />
+                        <img className="chat-area-profile" src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png" alt="img" />
+                        <span>+4</span>
                     </div>
-                    
                 </div>
                 <div className="chat-area-main">
                     <div className="chat-msg">
@@ -147,4 +144,4 @@ const ChatContent = () => {
     )
 }
 
-export default ChatContent
+export default FormChatRoom

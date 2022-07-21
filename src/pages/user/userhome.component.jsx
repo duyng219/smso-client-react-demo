@@ -5,7 +5,6 @@ import styled from 'styled-components'
 
 import  './userhome.styles.scss'
 import Navbar from './components/navbar/navbar.component'
-import MessageBox from './components/messagebox/messagebox.component'
 
 import SettingsApplicationsIcon from "@mui/icons-material/SettingsApplications";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
@@ -32,6 +31,7 @@ import FooterLayout from '../../components/footer/footer.component';
 
 import { Notification, NotificationDuration } from "../../components/antd/notification/notification.component";
 import { delay } from "redux-saga/effects";
+import ChatSMSOROOM from './components/chat-smso-room/chatSMSOROOM.component';
 
 const UserHome = () => {
     const { TabPane } = Tabs;
@@ -108,7 +108,7 @@ const UserHome = () => {
                         }
                     key="message-all"
                     >
-                        <MessageBox />
+                        <ChatSMSOROOM />
                     </TabPane>
                     <TabPane
                         tab={

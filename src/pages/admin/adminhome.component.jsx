@@ -19,6 +19,9 @@ const AdminHome = () => {
     //     notiFunc("error", "Không có quyền truy cập");
     //     return <Redirect to="/" />;
     // }
+    const Demo = () => {
+
+    }
 
     return (
         <motion.div
