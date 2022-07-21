@@ -154,7 +154,7 @@ const UserHome = () => {
                     >
                         Tab 5
                     </TabPane>
-                    <TabPane
+                    {/* <TabPane
                         tab={
                             <span>
                                 {<FeedIcon className="icon" />}
@@ -164,7 +164,7 @@ const UserHome = () => {
                         key="news"
                     >
                         <ServicesUser/>
-                    </TabPane>
+                    </TabPane> */}
 
                     <TabPane
                         tab={

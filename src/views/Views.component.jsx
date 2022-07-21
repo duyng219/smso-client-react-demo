@@ -12,6 +12,7 @@ import SubForm from '../components/subForm/subForm.component'
 import UserHome from '../pages/user/userhome.component'
 import FormEditUser from '../pages/user/components/form-edit/form-edit-user.component'
 import AdminHome from '../pages/admin/adminhome.component'
+import Services from '../pages/services/services.component'
 
 const View = () => {
     const location = useLocation()
@@ -29,6 +30,7 @@ const View = () => {
                         
                     {/* <Route path='/form' element={<FormUser/>} /> */}
                     <Route path='/form/subForm' element={<SubForm/>} />
+                    <Route path='/services' element={<Services/>} />
 
 
                     <Route path='/users/edit-user:id' element={<FormEditUser/>} />

@@ -143,6 +143,7 @@ const Header = () => {
                             <Link to={"/users/form/:id"}><Nav.Link href="#4">Form</Nav.Link></Link>
                             <Link to={"/users"}><Nav.Link href="#8">usertest</Nav.Link></Link>
                             <Link to={"/admin"}><Nav.Link href="#8">admintest</Nav.Link></Link>
+                            <Link to={"/services"}><Nav.Link href="#8">servicetest</Nav.Link></Link>
                             {/* <button onClick={handleLog}>logout</button> */}
                             
                         </Nav>

@@ -1,5 +1,6 @@
-import { notification, } from "antd";
+import { notification, Button  } from "antd";
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import { Link } from 'react-router-dom'
 
 // export const NotificationRight = (type, message, description = "") => {
 //     notification[type]({
@@ -30,3 +31,20 @@ export const NotificationDuration = (type, message, placement, description, dura
         },
     });
 };
+
+export const NotifiCheckService = (type, message, placement = "") => {
+    notification[type]({
+        message: message,
+        placement: placement,
+        description: (
+                <span>Your account has not registered for the service, please register 
+                    <Button type="link" size="small"><a href="/services">Click here!</a></Button> 
+                </span>
+            ),
+        style: {
+            marginTop: 50,
+        },
+    });
+};
+
+
