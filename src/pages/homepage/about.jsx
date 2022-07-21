@@ -87,6 +87,6 @@ const AppAbout = () => {
 export default AppAbout
 
 const Hero = styled.div`
-    margin-top: 6rem;
-    margin-bottom: 8rem;
+    margin-top: 0rem;
+    margin-bottom: 6rem;
 `
