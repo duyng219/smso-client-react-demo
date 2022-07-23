@@ -1,4 +1,5 @@
 import './form-user.styles.scss'
+import { useDispatch } from "react-redux";
 
 import {
     AutoComplete,
@@ -93,8 +94,8 @@ const FormUser = () => {
                     width: 70,
                 }}
             >
-                <Option value="86">+86</Option>
-                <Option value="87">+87</Option>
+                <Option value="84">+84</Option>
+                <Option value="85">+85</Option>
             </Select>
         </Form.Item>
     );
@@ -105,8 +106,8 @@ const FormUser = () => {
                     width: 70,
                 }}
             >
-                <Option value="USD">$</Option>
-                <Option value="CNY">¥</Option>
+                {/* <Option value="USD">$</Option>
+                <Option value="CNY">¥</Option> */}
             </Select>
         </Form.Item>
     );
@@ -135,10 +136,27 @@ const FormUser = () => {
             onFinish={onFinish}
             initialValues={{
                 residence: ['zhejiang', 'hangzhou', 'xihu'],
-                prefix: '86',
+                prefix: '84',
             }}
             scrollToFirstError
         >
+            <Form.Item
+                name="username"
+                label="User Name"
+                rules={[
+                    {
+                        type: 'username',
+                        message: 'The input is not valid User-Name!',
+                    },
+                    {
+                        required: true,
+                        message: 'Please input your User Name!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+
             <Form.Item
                 name="email"
                 label="E-mail"
@@ -157,70 +175,20 @@ const FormUser = () => {
             </Form.Item>
 
             <Form.Item
-                name="password"
-                label="Password"
+                name="gender"
+                label="Gender"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your password!',
-                    },
-                ]}
-                hasFeedback
-            >
-                <Input.Password />
-            </Form.Item>
-
-            <Form.Item
-                name="confirm"
-                label="Confirm Password"
-                dependencies={['password']}
-                hasFeedback
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please confirm your password!',
-                    },
-                    ({ getFieldValue }) => ({
-                        validator(_, value) {
-                            if (!value || getFieldValue('password') === value) {
-                                return Promise.resolve();
-                            }
-
-                            return Promise.reject(new Error('The two passwords that you entered do not match!'));
-                        },
-                    }),
-                ]}
-            >
-                <Input.Password />
-            </Form.Item>
-
-            <Form.Item
-                name="nickname"
-                label="Nickname"
-                tooltip="What do you want others to call you?"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your nickname!',
-                        whitespace: true,
+                        message: 'Please select gender!',
                     },
                 ]}
             >
-                <Input />
-            </Form.Item>
-
-            <Form.Item
-                name="residence"
-                label="Habitual Residence"
-                rules={[
-                    {
-                        type: 'array',
-                        required: true,
-                        message: 'Please select your habitual residence!',
-                    },
-                ]}
-            >
-                <Cascader options={residences} />
+                <Select placeholder="select your gender">
+                    <Option value="male">Male</Option>
+                    <Option value="female">Female</Option>
+                    <Option value="other">Other</Option>
+                </Select>
             </Form.Item>
 
             <Form.Item
@@ -242,17 +210,31 @@ const FormUser = () => {
             </Form.Item>
 
             <Form.Item
-                name="donation"
-                label="Donation"
+                name="address"
+                label="Address"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input donation amount!',
+                        message: 'Please input Address',
+                    },
+                ]}
+            >
+                <Input.TextArea showCount maxLength={100} />
+            </Form.Item>
+
+
+            <Form.Item
+                name="age"
+                label="Age"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input Age!',
                     },
                 ]}
             >
                 <InputNumber
-                    addonAfter={suffixSelector}
+                    // addonAfter={suffixSelector}
                     style={{
                         width: '100%',
                     }}
@@ -260,27 +242,30 @@ const FormUser = () => {
             </Form.Item>
 
             <Form.Item
-                name="website"
-                label="Website"
+                name="marialStatus"
+                label="Marital Status"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input website!',
+                        message: 'Please select Marial Status!',
                     },
                 ]}
             >
-                <AutoComplete options={websiteOptions} onChange={onWebsiteChange} placeholder="website">
-                    <Input />
-                </AutoComplete>
+                <Select placeholder="select your Marial Status">
+                    <Option value="male">Married</Option>
+                    <Option value="female">None</Option>
+                    <Option value="other">Other</Option>
+                    <Option value="bede">Bêđê nên ko kết hôn</Option>
+                </Select>
             </Form.Item>
 
             <Form.Item
-                name="intro"
-                label="Intro"
+                name="hobbies"
+                label="Hobbies"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input Intro',
+                        message: 'Please input Hobbies',
                     },
                 ]}
             >
@@ -288,23 +273,78 @@ const FormUser = () => {
             </Form.Item>
 
             <Form.Item
-                name="gender"
-                label="Gender"
+                name="education"
+                label="Education"
                 rules={[
                     {
                         required: true,
-                        message: 'Please select gender!',
+                        message: 'Please select Education!',
                     },
                 ]}
             >
-                <Select placeholder="select your gender">
-                    <Option value="male">Male</Option>
-                    <Option value="female">Female</Option>
-                    <Option value="other">Other</Option>
+                <Select placeholder="select your Marial Status">
+                    <Option value="level1">Lớp mầm</Option>
+                    <Option value="level2">Lớp mẫu giáo</Option>
+                    <Option value="level3">Tốt nghiệp mẫu giáo trường làng</Option>
+                    <Option value="level4">Bụi đời chợ lớn</Option>
                 </Select>
             </Form.Item>
 
-            <Form.Item label="Captcha" extra="We must make sure that your are a human.">
+            <Form.Item
+                name="work"
+                label="Work"
+                rules={[
+                    {
+                        type: 'text',
+                        message: 'The input is not valid Work!',
+                    },
+                    {
+                        required: true,
+                        message: 'Please input your Work!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+            
+            <Form.Item
+                name="company"
+                label="Company"
+                rules={[
+                    {
+                        type: 'text',
+                        message: 'The input is not valid Company!',
+                    },
+                    {
+                        required: true,
+                        message: 'Please input your Company!',
+                    },
+                ]}
+            >
+                <Input />
+            </Form.Item>
+
+            <Form.Item
+                name="position"
+                label="Position"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please select Position!',
+                    },
+                ]}
+            >
+                <Select placeholder="select your Position">
+                    <Option value="intern">Intern</Option>
+                    <Option value="fresher">Fresher</Option>
+                    <Option value="junior">Junior</Option>
+                    <Option value="middle">Middle</Option>
+                    <Option value="senior">Senior/Leader</Option>
+                    <Option value="pm">Project Manager</Option>
+                </Select>
+            </Form.Item>
+
+            {/* <Form.Item label="Captcha" extra="We must make sure that your are a human.">
                 <Row gutter={8}>
                     <Col span={12}>
                         <Form.Item
@@ -324,7 +364,7 @@ const FormUser = () => {
                         <Button>Get captcha</Button>
                     </Col>
                 </Row>
-            </Form.Item>
+            </Form.Item> */}
 
             <Form.Item
                 name="agreement"

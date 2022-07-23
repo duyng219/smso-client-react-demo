@@ -177,11 +177,11 @@ const Header = () => {
                             <Link to={"/"}><Nav.Link href="#1">Home</Nav.Link></Link>
                             <Link to={"/about"}><Nav.Link href="#2">About us</Nav.Link></Link>
                             <Link to={"/contact"}><Nav.Link href="#3">Contact</Nav.Link></Link>
+                            <Link to={"/services"}><Nav.Link href="#4">Services</Nav.Link></Link>
 
                             <Link to={"/users/form/:id"}><Nav.Link href="#4">Form</Nav.Link></Link>
                             <Link to={"/users"}><Nav.Link href="#8">usertest</Nav.Link></Link>
                             <Link to={"/admin"}><Nav.Link href="#8">admintest</Nav.Link></Link>
-                            <Link to={"/services"}><Nav.Link href="#8">servicetest</Nav.Link></Link>
                             {/* <button onClick={handleLog}>logout</button> */}
                             
                         </Nav>
