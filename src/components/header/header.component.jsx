@@ -36,6 +36,7 @@ const buttonRemove = styled.button`
 
 const Header = () => {
     const dispatch = useDispatch();
+    
     const userInfo = JSON.parse(localStorage.getItem("smso-user-logged"));
     const userInfoFb = JSON.parse(localStorage.getItem("smso-user-logged-fb"));
     const userInfoGg = JSON.parse(localStorage.getItem("smso-user-logged-gg"));
@@ -86,6 +87,55 @@ const Header = () => {
             ]}
         />
     );
+    const menuUser = (
+        <Menu
+            items={[
+                {
+                    key: '1',
+                    label: (
+                        <Link to={"/users"}><AccountCircleIcon fontSize="small" />Profile</Link>
+                    ),
+                },
+                {
+                    key: '2',
+                    label: (
+                        <Link to={"/settings"}><MiscellaneousServicesIcon fontSize="small"/> Settings</Link>
+                    ),
+                },
+                {
+                    key: '3',
+                    label: (
+                        <buttonRemove onClick={() => {dispatch(handleLogoutfb())}}><LogoutIcon  fontSize="small"/>Log out</buttonRemove>
+                    ),
+                },
+            ]}
+        />
+    );
+    const menuUserFb = (
+        <Menu
+        items={[
+            {
+                key: '1',
+                label: (
+                    <Link to={"/users"}><AccountCircleIcon fontSize="small" />Profile</Link>
+                ),
+            },
+            {
+                key: '2',
+                label: (
+                    <Link to={"/settings"}><MiscellaneousServicesIcon fontSize="small"/> Settings</Link>
+                ),
+            },
+            {
+                key: '3',
+                label: (
+                    <buttonRemove onClick={() => {dispatch(handleLogoutGg())}}><LogoutIcon  fontSize="small"/>Log out GG</buttonRemove>
+                ),
+            },
+        ]}
+    />
+    );
+
     const menuUserGg = (
         <Menu
         items={[
@@ -128,18 +178,6 @@ const Header = () => {
                             <Link to={"/about"}><Nav.Link href="#2">About us</Nav.Link></Link>
                             <Link to={"/contact"}><Nav.Link href="#3">Contact</Nav.Link></Link>
 
-                            {/* <NavDropdown  title="Click me" id="navbarScrollingDropdown">
-                                <NavDropdown.Item  href="#about">item 1</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action4">
-                                    item 2
-                                </NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action5">
-                                    item 3
-                                </NavDropdown.Item>
-                            </NavDropdown> */}
-
                             <Link to={"/users/form/:id"}><Nav.Link href="#4">Form</Nav.Link></Link>
                             <Link to={"/users"}><Nav.Link href="#8">usertest</Nav.Link></Link>
                             <Link to={"/admin"}><Nav.Link href="#8">admintest</Nav.Link></Link>
@@ -154,25 +192,34 @@ const Header = () => {
                         {(!userInfo && !userInfoFb && !userInfoGg) && (
                             <Link to={"/sign"}><Nav.Link href="#5"><button className='customButton custom-signin' >Sign <br /> In</button></Nav.Link></Link>
                         )}
-
+                            
                         {/* {userInfo && (
                             <Nav.Link href="/"><button onClick={handleLogout} className='customButton custom-signin custom-logout' >Log out</button></Nav.Link>
                         )} */}
 
-                        {userInfo?.userRoles[0] && (
-                            <Link to={"/users"}>
+                        {/* {userInfo?.userRoles[0] && ( */}
+                        {userInfo && (
+                            <Dropdown
+                                trigger={['click']}
+                                overlay={menuUser}
+                                placement="bottomRight"
+                                arrow={{
+                                    pointAtCenter: true,
+                                }}
+                            >
+                                {/* <Link to={"/users"}> */}
                                 <Nav.Link href="#6">
-                                    <button className='button-user' >
-                                        <div className="item-user">
-                                            <img
-                                                src={userimg}
-                                                alt=""
-                                                className="avatar-user"
-                                            />
-                                        </div>
-                                    </button>
+                                    <Tooltip placement="bottomRight" title={displayName}>
+                                        <button className='button-user' >
+                                            <Avatar  src={userimg} >
+                                                
+                                            </Avatar>
+                                        </button>
+                                    </Tooltip>
                                 </Nav.Link>
-                            </Link>
+                                {/* </Link> */}
+                            </Dropdown>
+                            
                         )}
 
                         {/* {(!userInfo && !userInfoFb) && (
@@ -229,9 +276,9 @@ const Header = () => {
                             </Dropdown>
                         )}
 
-                        {userInfo?.userRoles[1] && (
+                        {/* {userInfo?.userRoles[1] && (
                             <Link to={"/admin-profile"}><Nav.Link href="#7"><button className='customButton' >Admin</button></Nav.Link></Link>
-                        )}
+                        )} */}
 
                     </Navbar.Collapse>
 

@@ -16,7 +16,7 @@ import { push } from 'react-router-redux';
 
 const callAPILogin = async (loginInfo) => {
   try {
-    const res = api.post("/api/User/Login", loginInfo.payload);
+    const res = api.post("/api/Logins/Login", loginInfo.payload);
     return res;
   } catch (error) {
     throw new Error(error.message);
@@ -32,13 +32,15 @@ export function* login(loginInfo) {
     localStorage.setItem("smso-user-logged", JSON.stringify(res.data));
     Notification("success", "Logged in successfully", "top")
     yield delay(2000);
-    window.location.href = '/'
+    // window.location.href = '/'
     yield put(signInSuccess(res.data));
-    // history.push("/");
+    history.push("/");
   } catch (error) {
     Notification("warning", "You have wrong email or password", "top")
     yield delay(2000);
-    window.location.href = '/sign'
+    history.push("/sign");
+
+    // window.location.href = '/sign'
 
     yield put(signInFailure(error));
   }

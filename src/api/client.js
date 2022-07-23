@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://localhost:44329",
+  baseURL: "http://localhost:30405",
   // baseURL: "https://aedf-222-254-201-167.ap.ngrok.io",
 });
 
@@ -11,7 +11,7 @@ const accessTokenHoc = (previousAPI) => {
   const innerAccessToken = async () => {
     const refreshToken = localStorage.getItem("refreshToken");
     const token = localStorage.getItem("token");
-    const res = await instance.post(`api/User/RefreshToken`, {
+    const res = await instance.post(`api/Users/RefreshToken`, {
       token,
       refreshToken,
     });

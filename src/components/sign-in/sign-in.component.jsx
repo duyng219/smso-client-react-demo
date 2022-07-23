@@ -30,7 +30,7 @@ const SignIn = ({ user, login, status }) => {
     // LOGIN WITH API
     console.log(status);
     const [userLogin, setUserLogin] = useState({
-        userName: "",
+        email: "",
         password: "",
     });
     const handleChange = (event) => {
@@ -109,9 +109,9 @@ const SignIn = ({ user, login, status }) => {
 
             <form>
                 <FormInput
-                    type="userName"
-                    name="userName"
-                    value={userLogin.userName}
+                    type="email"
+                    name="email"
+                    value={userLogin.email}
                     handleChange={handleChange}
                     label="User name or Email"
                     required
