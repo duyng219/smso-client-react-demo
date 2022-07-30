@@ -13,6 +13,7 @@ import UserHome from '../pages/user/userhome.component'
 import FormEditUser from '../pages/user/components/form-edit/form-edit-user.component'
 import AdminHome from '../pages/admin/adminhome.component'
 import Services from '../pages/services/services.component'
+import Addtest from '../pages/user/components/addfriend/addtest'
 
 const View = () => {
     const location = useLocation()
@@ -26,7 +27,7 @@ const View = () => {
                     <Route path='/sign' element={<Sign/>} />
 
                     <Route path='/users' element={<UserHome/>}/>
-                        <Route path='users/form/:id' element={<FormUser/>}/>
+                        <Route path='users/form' element={<FormUser/>}/>
                         
                     {/* <Route path='/form' element={<FormUser/>} /> */}
                     <Route path='/form/subForm' element={<SubForm/>} />
@@ -35,6 +36,7 @@ const View = () => {
 
                     <Route path='/users/edit-user:id' element={<FormEditUser/>} />
                     <Route path='/admin' element={<AdminHome/>} />
+                    <Route path='/add' element={<Addtest/>} />
 
 
                 {/* <Route path='/demologin' element={<LoginDemo/>} /> */}

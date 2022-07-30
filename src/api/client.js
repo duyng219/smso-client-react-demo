@@ -5,6 +5,10 @@ const instance = axios.create({
   // baseURL: "https://aedf-222-254-201-167.ap.ngrok.io",
 });
 
+const instances = axios.create({
+  baseURL: "http://localhost:30405",
+});
+
 
 
 const accessTokenHoc = (previousAPI) => {

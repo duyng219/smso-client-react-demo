@@ -18,9 +18,12 @@ import Loading from '../loading/loading';
 const SignUp = ({ register, status }) => {
 
     const [userRegister, setUserRegister] = useState({
-        userName: "",
+        username: "",
+        email: "",
         // confirmUsername: "",
         password: "",
+        isAdmin: "user",
+
         // confirmPassword: "",
     });
 
@@ -49,10 +52,18 @@ const SignUp = ({ register, status }) => {
             <form className='sign-up-form'>
                 <FormInput
                     type='text'
-                    name='userName'
-                    value={userRegister.userName}
+                    name='username'
+                    value={userRegister.username}
                     onChange={onChange}
                     label='User name'
+                    required
+                />
+                <FormInput
+                    type='text'
+                    name='email'
+                    value={userRegister.email}
+                    onChange={onChange}
+                    label='Email'
                     required
                 />
                 {/* <FormInput

@@ -17,3 +17,28 @@ export const selectRegisterStatus = createSelector(
   [selectUser],
   (user) => user.status
 );
+
+export const selectAllUser = createSelector(
+  [selectUser],
+  (user) => user.allUser
+);
+
+export const selectOneUser = createSelector(
+  [selectUser],
+  (user) => user.oneUser
+);
+
+export const selectCategoryServices = createSelector(
+  [selectUser],
+  (user) => user.categoryServiceUser
+);
+
+export const selectServices = createSelector(
+  [selectUser],
+  (user) => user.serviceUser
+);
+
+export const selectUpdateRequiredUserStatus = createSelector(
+  [selectUser],
+  (user) => user.status
+);

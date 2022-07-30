@@ -2,9 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="361089c7-c6cc-49f5-9f67-aa601ecd796b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/api/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form-user-required/form-user.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form-user-required/form-user.component.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/header/header.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/header.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sign-up/sign-up.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-up/sign-up.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/AppProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/AppProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/AuthProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/AuthProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/firebase/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/admin/UserManagement/UserManagement.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/UserManagement/UserManagement.component.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/admin/adminhome.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/adminhome.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user/components/form-edit/form-user.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user/components/form-edit/form-user.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/user/userhome.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user/userhome.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user.action.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.action.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.reducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user.saga.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.saga.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user.selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.selector.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/redux/user/user.type.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.type.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/Views.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Views.component.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,19 +36,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/Workspace/eProject/eProject-T12103E1/smso-client-react-demo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Workspace/eProject/eProject-T12103E1/smso-client-react-demo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -49,6 +63,7 @@
       <workItem from="1657685344690" duration="9000" />
       <workItem from="1658315329414" duration="529000" />
       <workItem from="1658369541249" duration="652000" />
+      <workItem from="1659181060874" duration="599000" />
     </task>
     <servers />
   </component>

@@ -32,6 +32,7 @@ import FooterLayout from '../../components/footer/footer.component';
 import { Notification, NotificationDuration } from "../../components/antd/notification/notification.component";
 import { delay } from "redux-saga/effects";
 import ChatSMSOROOM from './components/chat-smso-room/chatSMSOROOM.component';
+import AddFriend from './components/addfriend/addfriend.component';
 
 const UserHome = () => {
     const { TabPane } = Tabs;
@@ -119,7 +120,7 @@ const UserHome = () => {
                         }
                         key="add-friends"
                     >
-                        Tab 2
+                        <AddFriend/>
                     </TabPane>
                     <TabPane
                         tab={
@@ -128,7 +129,7 @@ const UserHome = () => {
                                 Profile
                             </span>
                         }
-                        key="profile"
+                        key="profile/:id"
                     >
                         <FormUser />
                     </TabPane>

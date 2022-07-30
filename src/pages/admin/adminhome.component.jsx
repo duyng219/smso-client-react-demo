@@ -9,6 +9,7 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import HomeAdmin from "./Home/homeadmin.component";
 import FooterLayout from "../../components/footer/footer.component";
+import ServiceManagement from "./ServiceManagement/ServiceManagement.component";
 
 
 const AdminHome = () => {
@@ -54,7 +55,7 @@ const AdminHome = () => {
                                 Add new services
                             </Button>
                         </NavLink>
-                        {/* <ProductManagement /> */}
+                        <ServiceManagement />
                     </TabPane>
 
                     <TabPane style={{ marginTop: 15 }} tab="Other Management" key="4">

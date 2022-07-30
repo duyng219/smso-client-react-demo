@@ -6,6 +6,10 @@ import UserActionTypes from "./user.type";
       - Nhận action: dựa vào action type, và data nhận vào từ action để thay đổi state cụ thể này.
 */
 const INITIAL_STATE = {
+  allUsers: [],
+  oneUser: [],
+  serviceUser: [],
+  categoryServiceUser: [],
   currentUser: {
     token: "",
     requestToken: "",
@@ -17,6 +21,8 @@ const INITIAL_STATE = {
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
+
+  console.log(action.payload);
   switch (action.type) {
     case UserActionTypes.SIGN_IN_SUCCESS:
       return {
@@ -37,6 +43,45 @@ const userReducer = (state = INITIAL_STATE, action) => {
       };
 
 
+      case UserActionTypes.GET_USER_SUCCESS:
+        return {
+          ...state,
+          allUsers: action.payload,
+        };
+    
+      case UserActionTypes.GET_ONE_USER_SUCCESS:
+        return {
+          ...state,
+          oneUser: action.payload,
+        };
+    
+      case UserActionTypes.GET_SERVICE_SUCCESS:
+        return {
+          ...state,
+          serviceUser: action.payload,
+        };
+
+      case UserActionTypes.GET_CATEGORY_SERVICE_SUCCESS:
+          return {
+            ...state,
+            categoryServiceUser: action.payload,
+          };
+      
+      case UserActionTypes.UPDATE_REQUIRED_USER_SUCCESS:
+          return {
+            ...state,
+            status: UserActionTypes.UPDATE_REQUIRED_USER_SUCCESS
+          };
+      case UserActionTypes.UPDATE_REQUIRED_USER_PROCESSING:
+          return {
+            ...state,
+            status: UserActionTypes.UPDATE_REQUIRED_USER_PROCESSING,
+          };
+      case UserActionTypes.UPDATE_REQUIRED_USER_FAILURE:
+          return {
+            ...state,
+            err: action.payload,
+          };
 
       case UserActionTypes.SIGN_UP_SUCCESS:
         return {

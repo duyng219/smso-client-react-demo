@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from "react-redux";
 import { AuthContext } from '../../context/AuthProvider';
-import { handleLogoutfb, handleLogoutGg } from '../../redux/logout-localstore/logoutLocalStore'
+import { handleLogoutfb, handleLogoutGg, handleLogoutUser } from '../../redux/logout-localstore/logoutLocalStore'
 import history from "../../history";
 import { Link } from 'react-router-dom'
 
@@ -69,7 +69,7 @@ const Header = () => {
                 {
                     key: '1',
                     label: (
-                        <Link to={"/admin"}><AccountCircleIcon fontSize="small" />Profile</Link>
+                        <Link to={"/admin"}><AccountCircleIcon fontSize="small" />Management User</Link>
                     ),
                 },
                 {
@@ -81,7 +81,7 @@ const Header = () => {
                 {
                     key: '3',
                     label: (
-                        <buttonRemove onClick={() => {dispatch(handleLogoutfb())}}><LogoutIcon  fontSize="small"/>Log out</buttonRemove>
+                        <buttonRemove onClick={() => {dispatch(handleLogoutUser())}}><LogoutIcon  fontSize="small"/>Log out</buttonRemove>
                     ),
                 },
             ]}
@@ -93,7 +93,7 @@ const Header = () => {
                 {
                     key: '1',
                     label: (
-                        <Link to={"/users"}><AccountCircleIcon fontSize="small" />Profile</Link>
+                        <Link to={"/users"}><AccountCircleIcon fontSize="small" />Home</Link>
                     ),
                 },
                 {
@@ -105,7 +105,7 @@ const Header = () => {
                 {
                     key: '3',
                     label: (
-                        <buttonRemove onClick={() => {dispatch(handleLogoutfb())}}><LogoutIcon  fontSize="small"/>Log out</buttonRemove>
+                        <buttonRemove onClick={() => {dispatch(handleLogoutUser())}}><LogoutIcon  fontSize="small"/>Log out</buttonRemove>
                     ),
                 },
             ]}
@@ -179,9 +179,10 @@ const Header = () => {
                             <Link to={"/contact"}><Nav.Link href="#3">Contact</Nav.Link></Link>
                             <Link to={"/services"}><Nav.Link href="#4">Services</Nav.Link></Link>
 
-                            <Link to={"/users/form/:id"}><Nav.Link href="#4">Form</Nav.Link></Link>
-                            <Link to={"/users"}><Nav.Link href="#8">usertest</Nav.Link></Link>
-                            <Link to={"/admin"}><Nav.Link href="#8">admintest</Nav.Link></Link>
+                            <Link to={"/add"}><Nav.Link href="#4">Add Demo</Nav.Link></Link>
+                            {/* <Link to={"/users/form/:id"}><Nav.Link href="#4">Form</Nav.Link></Link> */}
+                            {/* <Link to={"/users"}><Nav.Link href="#8">usertest</Nav.Link></Link> */}
+                            {/* <Link to={"/admin"}><Nav.Link href="#8">admintest</Nav.Link></Link> */}
                             {/* <button onClick={handleLog}>logout</button> */}
                             
                         </Nav>
@@ -198,7 +199,7 @@ const Header = () => {
                         )} */}
 
                         {/* {userInfo?.userRoles[0] && ( */}
-                        {userInfo && (
+                        {userInfo?.role == 'user' && (
                             <Dropdown
                                 trigger={['click']}
                                 overlay={menuUser}
@@ -233,7 +234,7 @@ const Header = () => {
                         {userInfoFb?.email && (
                             <Dropdown
                                 trigger={['click']}
-                                overlay={menuAdmin}
+                                overlay={menuUserFb}
                                 placement="bottomRight"
                                 arrow={{
                                     pointAtCenter: true,
@@ -276,9 +277,28 @@ const Header = () => {
                             </Dropdown>
                         )}
 
-                        {/* {userInfo?.userRoles[1] && (
-                            <Link to={"/admin-profile"}><Nav.Link href="#7"><button className='customButton' >Admin</button></Nav.Link></Link>
-                        )} */}
+                        {userInfo?.role == 'admin' && (
+                            <Dropdown
+                                trigger={['click']}
+                                overlay={menuAdmin}
+                                placement="bottomRight"
+                                arrow={{
+                                    pointAtCenter: true,
+                                }}
+                            >
+                                {/* <Link to={"/users"}> */}
+                                <Nav.Link href="#6">
+                                    <Tooltip placement="bottomRight" title={displayName}>
+                                        <button className='button-user' >
+                                            <Avatar  src={userimg} >
+                                                
+                                            </Avatar>
+                                        </button>
+                                    </Tooltip>
+                                </Nav.Link>
+                                {/* </Link> */}
+                            </Dropdown>
+                        )}
 
                     </Navbar.Collapse>
 

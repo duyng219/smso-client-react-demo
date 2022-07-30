@@ -18,7 +18,7 @@ export default function AppProvider({ children }) {
 
     const rooms = useFirestore('rooms', roomsCondition)
 
-    console.log({rooms});
+    // console.log({rooms});
 
     
 

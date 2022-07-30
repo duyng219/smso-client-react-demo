@@ -1,54 +1,30 @@
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { getOneUserStart } from '../../redux/user/user.action';
 import './form-user.styles.scss'
-import { useDispatch } from "react-redux";
+
+import { createStructuredSelector } from "reselect";
+import { selectUpdateRequiredUserStatus } from '../../redux/user/user.selector.js';
+import { connect } from "react-redux";
+import { updateRequiredUserStart } from '../../redux/user/user.action';
+
+import { InfoCircleOutlined, MailOutlined, UserOutlined, UploadOutlined } from '@ant-design/icons';
 
 import {
     AutoComplete,
     Button,
-    Cascader,
     Checkbox,
     Col,
     Form,
     Input,
     InputNumber,
-    Row,
     Select,
+    Tooltip,
+    Upload,
+    message
 } from 'antd';
-import React, { useState } from 'react';
 const { Option } = Select;
-const residences = [
-    {
-        value: 'zhejiang',
-        label: 'Zhejiang',
-        children: [
-            {
-                value: 'hangzhou',
-                label: 'Hangzhou',
-                children: [
-                    {
-                        value: 'xihu',
-                        label: 'West Lake',
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        value: 'jiangsu',
-        label: 'Jiangsu',
-        children: [
-            {
-                value: 'nanjing',
-                label: 'Nanjing',
-                children: [
-                    {
-                        value: 'zhonghuamen',
-                        label: 'Zhong Hua Men',
-                    },
-                ],
-            },
-        ],
-    },
-];
+
 const formItemLayout = {
     labelCol: {
         xs: {
@@ -80,51 +56,69 @@ const tailFormItemLayout = {
     },
 };
 
-const FormUser = () => {
+const FormUser = ({submitUpdateRequired, status}) => {
+    const { oneUser } = useSelector(state => state.user)
+    console.log("user one LIST:", oneUser);
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getOneUserStart());
+    }, [])
+
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
+        submitUpdateRequired(values);
     };
 
     const prefixSelector = (
-        <Form.Item name="prefix" noStyle>
-            <Select
+        <Form.Item name="isAdmin" noStyle>
+            {/* <Select
                 style={{
                     width: 70,
                 }}
             >
-                <Option value="84">+84</Option>
-                <Option value="85">+85</Option>
-            </Select>
+                <Option value="user">+84</Option>
+            </Select> */}
         </Form.Item>
     );
-    const suffixSelector = (
-        <Form.Item name="suffix" noStyle>
-            <Select
-                style={{
-                    width: 70,
-                }}
-            >
-                {/* <Option value="USD">$</Option>
-                <Option value="CNY">¥</Option> */}
-            </Select>
-        </Form.Item>
-    );
-    const [autoCompleteResult, setAutoCompleteResult] = useState([]);
 
-    const onWebsiteChange = (value) => {
-        if (!value) {
-            setAutoCompleteResult([]);
-        } else {
-            setAutoCompleteResult(['.com', '.org', '.net'].map((domain) => `${value}${domain}`));
+    const normFile = (e) => {
+        console.log('Upload event:', e);
+        if (Array.isArray(e)) {
+            return e;
         }
+        return e?.fileList;
     };
+    const props = {
+        name: 'file',
+        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        headers: {
+          authorization: 'authorization-text',
+        },
+      
+        onChange(info) {
+          if (info.file.status !== 'uploading') {
+            console.log(info.file, info.fileList);
+          }
+      
+          if (info.file.status === 'done') {
+            message.success(`${info.file.name} file uploaded successfully`);
+          } else if (info.file.status === 'error') {
+            message.error(`${info.file.name} file upload failed.`);
+          }
+        },
+      };
 
-    const websiteOptions = autoCompleteResult.map((website) => ({
-        label: website,
-        value: website,
-    }));
+    // const normFile = (e) => {
+    //     console.log('Upload event:', e);
+    //     if ((e)) {
+    //         return e;
+    //     }
+    //     return e?.fileList;
+    // };
+
     return (
         <div className="form-container">
             <h4 className="form-title">Please update your information</h4>
@@ -136,42 +130,94 @@ const FormUser = () => {
             onFinish={onFinish}
             initialValues={{
                 residence: ['zhejiang', 'hangzhou', 'xihu'],
-                prefix: '84',
+                isAdmin: 'user',
             }}
             scrollToFirstError
         >
-            <Form.Item
-                name="username"
-                label="User Name"
-                rules={[
-                    {
-                        type: 'username',
-                        message: 'The input is not valid User-Name!',
-                    },
-                    {
-                        required: true,
-                        message: 'Please input your User Name!',
-                    },
-                ]}
+            {/* <Form.Item
+                name="avatar"
+                label="Upload"
+                valuePropName="fileList"
+                getValueFromEvent={normFile}
+                extra="longggg"
             >
-                <Input />
+                <Upload {...props}>
+                    <Button icon={<UploadOutlined />}>Click to Upload</Button>
+                </Upload>
+            </Form.Item> */}
+            
+            <Form.Item
+                name="userId"
+                label="User Id"
+            >
+                <InputNumber
+                    placeholder={oneUser.userId}
+                    prefix={<UserOutlined className="site-form-item-icon" />}
+                    suffix={
+                        <Tooltip title="Extra information">
+                        <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+                        </Tooltip>
+                    }
+                    
+                />
+            </Form.Item>
+            {/* <Form.Item
+                name="avatar"
+                label="Avatar"
+            >
+                <Input
+                    placeholder={oneUser.userId}
+                    prefix={<UserOutlined className="site-form-item-icon" />}
+                    suffix={
+                        <Tooltip title="Extra information">
+                        <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+                        </Tooltip>
+                    }
+                />
+            </Form.Item> */}
+            <Form.Item
+                label="User Name"
+                name="username"
+            >
+                <Input
+                    placeholder={oneUser.username}
+                    prefix={<UserOutlined className="site-form-item-icon" />}
+                    suffix={
+                        <Tooltip title="Extra information">
+                        <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+                        </Tooltip>
+                    }
+                />
             </Form.Item>
 
             <Form.Item
-                name="email"
                 label="E-mail"
-                rules={[
-                    {
-                        type: 'email',
-                        message: 'The input is not valid E-mail!',
-                    },
-                    {
-                        required: true,
-                        message: 'Please input your E-mail!',
-                    },
-                ]}
+                name="email"
             >
-                <Input />
+                <Input
+                    placeholder={oneUser.email}
+                    prefix={<MailOutlined className="site-form-item-icon" />}
+                    suffix={
+                        <Tooltip title="Extra information">
+                        <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+                        </Tooltip>
+                    }
+                />
+            </Form.Item>
+
+            <Form.Item
+                label="Password"
+                name="password"
+            >
+                <Input
+                    placeholder={oneUser.password}
+                    prefix={<MailOutlined className="site-form-item-icon" />}
+                    suffix={
+                        <Tooltip title="Extra information">
+                        <InfoCircleOutlined style={{ color: 'rgba(0,0,0,.45)' }} />
+                        </Tooltip>
+                    }
+                />
             </Form.Item>
 
             <Form.Item
@@ -185,9 +231,9 @@ const FormUser = () => {
                 ]}
             >
                 <Select placeholder="select your gender">
-                    <Option value="male">Male</Option>
-                    <Option value="female">Female</Option>
-                    <Option value="other">Other</Option>
+                    <Option value="Male">Male</Option>
+                    <Option value="Female">Female</Option>
+                    <Option value="Other">Other</Option>
                 </Select>
             </Form.Item>
 
@@ -224,7 +270,7 @@ const FormUser = () => {
 
 
             <Form.Item
-                name="age"
+                name="birthday"
                 label="Age"
                 rules={[
                     {
@@ -234,7 +280,6 @@ const FormUser = () => {
                 ]}
             >
                 <InputNumber
-                    // addonAfter={suffixSelector}
                     style={{
                         width: '100%',
                     }}
@@ -242,7 +287,7 @@ const FormUser = () => {
             </Form.Item>
 
             <Form.Item
-                name="marialStatus"
+                name="maritalStatus"
                 label="Marital Status"
                 rules={[
                     {
@@ -252,10 +297,10 @@ const FormUser = () => {
                 ]}
             >
                 <Select placeholder="select your Marial Status">
-                    <Option value="male">Married</Option>
-                    <Option value="female">None</Option>
-                    <Option value="other">Other</Option>
-                    <Option value="bede">Bêđê nên ko kết hôn</Option>
+                    <Option value="Married">Married</Option>
+                    <Option value="None">None</Option>
+                    <Option value="Other">Other</Option>
+                    <Option value="Bêđê nên ko kết hôn">Bêđê nên ko kết hôn</Option>
                 </Select>
             </Form.Item>
 
@@ -283,10 +328,10 @@ const FormUser = () => {
                 ]}
             >
                 <Select placeholder="select your Marial Status">
-                    <Option value="level1">Lớp mầm</Option>
-                    <Option value="level2">Lớp mẫu giáo</Option>
-                    <Option value="level3">Tốt nghiệp mẫu giáo trường làng</Option>
-                    <Option value="level4">Bụi đời chợ lớn</Option>
+                    <Option value="Lớp mầm">Lớp mầm</Option>
+                    <Option value="Lớp mẫu giáo">Lớp mẫu giáo</Option>
+                    <Option value="Tốt nghiệp mẫu giáo trường làng">Tốt nghiệp mẫu giáo trường làng</Option>
+                    <Option value="Bụi đời chợ lớn">Bụi đời chợ lớn</Option>
                 </Select>
             </Form.Item>
 
@@ -335,38 +380,15 @@ const FormUser = () => {
                 ]}
             >
                 <Select placeholder="select your Position">
-                    <Option value="intern">Intern</Option>
-                    <Option value="fresher">Fresher</Option>
-                    <Option value="junior">Junior</Option>
-                    <Option value="middle">Middle</Option>
-                    <Option value="senior">Senior/Leader</Option>
-                    <Option value="pm">Project Manager</Option>
+                    <Option value="Intern">Intern</Option>
+                    <Option value="Fresher">Fresher</Option>
+                    <Option value="Junior">Junior</Option>
+                    <Option value="Middle">Middle</Option>
+                    <Option value="Senior">Senior/Leader</Option>
+                    <Option value="PM">Project Manager</Option>
                 </Select>
             </Form.Item>
-
-            {/* <Form.Item label="Captcha" extra="We must make sure that your are a human.">
-                <Row gutter={8}>
-                    <Col span={12}>
-                        <Form.Item
-                            name="captcha"
-                            noStyle
-                            rules={[
-                                {
-                                    required: true,
-                                    message: 'Please input the captcha you got!',
-                                },
-                            ]}
-                        >
-                            <Input />
-                        </Form.Item>
-                    </Col>
-                    <Col span={12}>
-                        <Button>Get captcha</Button>
-                    </Col>
-                </Row>
-            </Form.Item> */}
-
-            <Form.Item
+            {/* <Form.Item
                 name="agreement"
                 valuePropName="checked"
                 rules={[
@@ -380,7 +402,7 @@ const FormUser = () => {
                 <Checkbox>
                     I have read the <a href="/">agreement</a>
                 </Checkbox>
-            </Form.Item>
+            </Form.Item> */}
             <Form.Item {...tailFormItemLayout}>
                 <Button type="primary" htmlType="submit">
                     Register
@@ -393,4 +415,14 @@ const FormUser = () => {
     );
 };
 
-export default FormUser;
+// export default FormUser;
+
+const mapStateToProp = createStructuredSelector({
+    status: selectUpdateRequiredUserStatus,
+});
+
+const mapDispatchToProp = (dispatch) => ({
+    submitUpdateRequired: (values) => dispatch(updateRequiredUserStart(values)),
+});
+
+export default connect(mapStateToProp, mapDispatchToProp)(FormUser);
