@@ -21,6 +21,20 @@ export class UserService extends baseService {
         return this.delete(`/api/Users/${id}`);
     };
 
+    postService = (info) => {
+        return this.post(`/api/Services/`, info);
+    };
+    deleteService = (id) => {
+        return this.delete(`/api/Services/${id}`);
+    };
+
+    postCategoryService = (info) => {
+        return this.post(`/api/ServicesCategory/`, info);
+    };
+    deleteCategoryService = (id) => {
+        return this.delete(`/api/ServicesCategory/${id}`);
+    };
+
     // getOneUser = (id) => {
     //     return this.get(`/api/users/${id}`);
     // };

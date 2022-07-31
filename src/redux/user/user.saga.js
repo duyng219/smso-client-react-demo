@@ -242,10 +242,77 @@ export function* getServiceStart() {
 //DELETE USER
 export const deleteUser = async (id) => {
   try {
-    // yield put(getUserProcessing());
     await userService.deleteUser(id);
     // console.log("res: ", res);
     NotificationDuration("success", "You have delete user successfully", "top")
+    setTimeout(() => {
+      window.location.href = '/admin'
+    }, 2000);
+  } catch (error) {
+    NotificationDuration("warning", "Error Delete", "top")
+    setTimeout(() => {
+      window.location.href = '/admin'
+    }, 2000);
+  }
+}
+
+//POST CATEGORY
+export const postCategoryService = async (info) => {
+  try {
+    await userService.postCategoryService(info);
+    // console.log("res: ", res);
+    NotificationDuration("success", "You have add new category successfully", "top")
+    setTimeout(() => {
+      window.location.href = '/admin'
+    }, 2000);
+  } catch (error) {
+    NotificationDuration("warning", "Cannot add new category", "top")
+    setTimeout(() => {
+      window.location.href = '/admin'
+    }, 4000);
+  }
+}
+
+//DELETE CATEGORY
+export const deleteCategoryService = async (id) => {
+  try {
+    await userService.deleteCategoryService(id);
+    // console.log("res: ", res);
+    NotificationDuration("success", "You have delete category successfully", "top")
+    setTimeout(() => {
+      window.location.href = '/admin'
+    }, 2000);
+  } catch (error) {
+    NotificationDuration("warning", "You need to delete the service before deleting the category", "top")
+    setTimeout(() => {
+      window.location.href = '/admin'
+    }, 4000);
+  }
+}
+
+//POST SERVICE
+export const postService = async (info) => {
+  try {
+    await userService.postService(info);
+    // console.log("res: ", res);
+    NotificationDuration("success", "You have add new service successfully", "top")
+    setTimeout(() => {
+      window.location.href = '/admin'
+    }, 2000);
+  } catch (error) {
+    NotificationDuration("warning", "Cannot add new service", "top")
+    setTimeout(() => {
+      window.location.href = '/admin'
+    }, 4000);
+  }
+}
+
+//DELETE SERVICE
+export const deleteService = async (id) => {
+  try {
+    await userService.deleteService(id);
+    // console.log("res: ", res);
+    NotificationDuration("success", "You have delete service successfully", "top")
     setTimeout(() => {
       window.location.href = '/admin'
     }, 2000);
