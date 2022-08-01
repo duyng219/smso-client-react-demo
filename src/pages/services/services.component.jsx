@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { createStructuredSelector } from "reselect";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { getOneUserStart } from '../../redux/user/user.action';
+import { UserRegisterService } from '../../redux/user/user.saga';
 import { motion } from 'framer-motion'
 import { List, Card, Button } from "antd";
 
@@ -11,7 +15,7 @@ const data = [
         title: "Basic",
         content: [
             {
-                price: "9.99$",
+                price: "Free",
                 time: "10 Days",
                 option: "1 Service",
                 support: "24/7 support",
@@ -24,7 +28,7 @@ const data = [
         title: "Basic++",
         content: [
             {
-                price: "$29.99",
+                price: "$9.99",
                 time: "1 Month",
                 option: "3 Services",
                 support: "24/7 support",
@@ -37,7 +41,7 @@ const data = [
         title: "Premium",
         content: [
             {
-                price: "$49.99",
+                price: "$19.99",
                 time: "3 months",
                 option: "All Services",
                 support: "24/7 support",
@@ -49,6 +53,25 @@ const data = [
 ];
 
 const Services = () => {
+    const { oneUser } = useSelector(state => state.user)
+    let getIdUser = oneUser.userId;
+
+    const createRegiserService = {
+        serviceRegisterId: 1,
+        serviceRegisterName: "Register",
+        service: true,
+        userId: getIdUser,
+    }
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getOneUserStart());
+    }, [])
+    
+    const hanldeSubmit = () => {
+        dispatch(UserRegisterService(createRegiserService));
+    }
+
     return (
         <motion.div
             animate={{ opacity: 1 }}
@@ -78,7 +101,7 @@ const Services = () => {
                                     dataSource={data}
                                     renderItem={(item) => (
                                         <List.Item>
-                                            <Card title={item.title}>
+                                            <Card onClick={hanldeSubmit} title={item.title}>
                                                 <p className="large">{item.content[0].price}</p>
                                                 <p>{item.content[0].time}</p>
                                                 <p>{item.content[0].option}</p>

@@ -80,6 +80,16 @@ const ServiceManagement = () => {
       key: 'serviceName',
     },
     {
+      title: 'Url Link Service',
+      dataIndex: 'urlLinkService',
+      key: 'urlLinkService',
+    },
+    {
+      title: 'Url Image',
+      dataIndex: 'urlImage',
+      key: 'urlImage',
+    },
+    {
       title: 'Price Service',
       dataIndex: 'servicePrice',
       key: 'servicePrice',

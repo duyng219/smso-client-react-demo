@@ -306,6 +306,24 @@ export const postService = async (info) => {
     }, 4000);
   }
 }
+// REGISTER USER SERVICE
+export const UserRegisterService = async (info) => {
+  try {
+    const res = await userService.userRegisterService(info);
+    console.log("res: ", res);
+    localStorage.setItem("user-resgister-service", JSON.stringify(res.data));
+    NotificationDuration("success", "You have register service successfully", "top")
+    setTimeout(() => {
+      window.location.href = '/users'
+    }, 2000);
+  } catch (error) {
+    NotificationDuration("warning", "Cannot register service", "top")
+    setTimeout(() => {
+      window.location.href = '/users'
+    }, 4000);
+  }
+}
+
 
 //DELETE SERVICE
 export const deleteService = async (id) => {

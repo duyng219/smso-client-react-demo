@@ -7,6 +7,7 @@ import { Grid } from "@mui/material";
 import { Button } from "antd";
 import './sign-in.styles.scss'
 
+
 import UserActionTypes from "../../redux/user/user.type";
 import { signInStart } from "../../redux/user/user.action";
 import { connect } from "react-redux";
@@ -42,8 +43,11 @@ const SignIn = ({ user, login, status }) => {
                     : event.target.value,
         }));
     };
-    const handleLogin = () => {
+    const handleLogin = (e) => {
+        e.preventDefault();
+        
         login(userLogin);
+        // console.log(userLogin)
     };
 
 

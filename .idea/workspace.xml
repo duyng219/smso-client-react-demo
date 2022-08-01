@@ -2,23 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="361089c7-c6cc-49f5-9f67-aa601ecd796b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/api/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/form-user-required/form-user.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form-user-required/form-user.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/header.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/header.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sign-up/sign-up.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-up/sign-up.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/AppProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/AppProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/AuthProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/AuthProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/firebase/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/firebase/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/UserManagement/UserManagement.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/UserManagement/UserManagement.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/admin/adminhome.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/admin/adminhome.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/user/components/form-edit/form-user.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user/components/form-edit/form-user.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/user/userhome.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/user/userhome.component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.action.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.action.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.reducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.saga.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.saga.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.selector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.selector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/redux/user/user.type.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/redux/user/user.type.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/Views.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/Views.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form-input/form-input.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form-input/form-input.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/form-input/form-input.styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/form-input/form-input.styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sign-in/sign-in.component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sign-in/sign-in.component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,6 +53,7 @@
       <workItem from="1658315329414" duration="529000" />
       <workItem from="1658369541249" duration="652000" />
       <workItem from="1659181060874" duration="599000" />
+      <workItem from="1659356390981" duration="8000" />
     </task>
     <servers />
   </component>

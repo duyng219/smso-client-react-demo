@@ -166,6 +166,22 @@ const AdminHome = () => {
                         >
                             <Input prefix={<AppstoreAddOutlined className="site-form-item-icon" />} placeholder="Service name of category" />
                         </Form.Item>
+
+                        <Form.Item
+                            name="urlLinkService"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input url Link Service!',
+                                },
+                            ]}
+                        >
+                            <Input
+                                prefix={<QuestionCircleOutlined className="site-form-item-icon" />}
+                                placeholder="Url Link service of category"
+                            />
+                        </Form.Item>
+
                         <Form.Item
                             name="description"
                             rules={[
@@ -180,6 +196,23 @@ const AdminHome = () => {
                                 placeholder="Description service of category"
                             />
                         </Form.Item>
+
+                        <Form.Item
+                            name="urlImage"
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input url image Service!',
+                                },
+                            ]}
+                        >
+                            <Input
+                                prefix={<QuestionCircleOutlined className="site-form-item-icon" />}
+                                placeholder="Url image service"
+                            />
+                        </Form.Item>
+
+
 
                         <Form.Item
                             name="servicePrice"
@@ -218,7 +251,6 @@ const AdminHome = () => {
                             
                         </Form.Item>
                         <p style={{ fontWeight: 200, fontSize: 13 }}>(*You need to fill in the correct category id that you created*)</p>
-                        
                         <Form.Item>
                             <Button type="primary" htmlType="submit" className="login-form-button">
                                 Add

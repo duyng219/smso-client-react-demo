@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { connect, useDispatch, useSelector } from "react-redux";
 
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
@@ -11,7 +11,9 @@ import image5 from '../../../../assets/images/service55.png';
 import image6 from '../../../../assets/images/service55.png';
 import { Row, Col } from 'antd'
 import { Card } from 'antd';
+
 import history from '../../../../history';
+import { getServiceStart } from '../../../../redux/user/user.action';
 import { Link } from 'react-router-dom'
 import './homeUser.styles.scss'
 
@@ -27,25 +29,43 @@ const { Meta } = Card;
 
 
 const HomeUser = () => {
+    const userService = JSON.parse(localStorage.getItem("user-resgister-service"));
 
-    // const openNotification = () => {
-    //     const args = {
-    //         message: 'Notification Title',
-    //         description:(
-    //             <span>Your account has not registered for the service, please register 
-    //                     <Button type="link" size="small">Click here!</Button> 
-    //             </span>
-    //         ),
-    //         duration: 0,
-    //     };
-    //     notification.open(args);
-    // };
-
+    const NotifiCheckService = (type, message, placement = "") => {
+        notification[type]({
+            message: message,
+            placement: placement,
+            description: (
+                    <span>Your account has not registered for the service, please register 
+                        <Button type="link" size="small"><a href="/services">Click here!</a></Button> 
+                    </span>
+                ),
+            style: {
+                marginTop: 50,
+            },
+        });
+    };
+    const { serviceUser } = useSelector(state => state.user)
+    
+    console.log("Service LIST:", serviceUser);
+    
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getServiceStart());
+    }, [dispatch])
+
 
     const CheckSer = () => {
-        dispatch(CheckService());
-        NotifiCheckService("success");
+        // dispatch(CheckService());
+        if (!userService) {
+            NotifiCheckService("info", "Alert", "topRight")
+        } else if(userService){
+            NotifiCheckService("success", "Successfully registered", "topRight")
+            setTimeout(() => {
+                window.location.href = serviceUser?.[0]?.urlLinkService
+            }, 3000);
+            // console.log("Service link",serviceUser?.[0]?.urlLinkService);
+        }
     };
 
     return (
@@ -69,66 +89,21 @@ const HomeUser = () => {
 
 
                                     <Row gutter={[16, 16]}>
-                                        <Col  xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
+                                        {serviceUser.map(item => (
+                                            
+                                            <Col key={item.serviceId}  xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
                                             {/* <Link to={"/users"}> */}
-                                            <Card onClick={CheckSer}
+                                            <Card 
+                                                onClick={CheckSer}
                                                 hoverable
-                                                cover={<img alt="Item" src={image1} />}
+                                                cover={<img alt="Item" src={item.urlImage} />}
                                             >
-                                                <Meta title="News" s />
+                                                <Meta title={item.serviceName} s />
                                             </Card>
                                             {/* </Link> */}
                                         </Col>
-                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                            {/* <Link to={"/users"}> */}
-                                                <Card onClick={CheckSer}
-                                                    hoverable
-                                                    cover={<img alt="Item" src={image2} />}
-                                                >
-                                                    <Meta title="Read books" s />
-                                                </Card>
-                                            {/* </Link> */}
-                                        </Col>
-                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                            {/* <Link to={"/users"}> */}
-                                                <Card onClick={CheckSer}
-                                                    hoverable
-                                                    cover={<img alt="Item" src={image3} />}
-                                                >
-                                                    <Meta title="Watch movie" s />
-                                                </Card>
-                                            {/* </Link> */}
-                                        </Col>
-                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                            {/* <Link to={"/users"}> */}
-                                                <Card onClick={CheckSer}
-                                                    hoverable
-                                                    cover={<img alt="Item" src={image4} />}
-                                                >
-                                                    <Meta title="Play online games" s />
-                                                </Card>
-                                            {/* </Link> */}
-                                        </Col>
-                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                            {/* <Link to={"/users"}> */}
-                                                <Card onClick={CheckSer}
-                                                    hoverable
-                                                    cover={<img alt="Item" src={image5} />}
-                                                >
-                                                    <Meta title="Others.." s />
-                                                </Card>
-                                            {/* </Link> */}
-                                        </Col>
-                                        <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 8 }}>
-                                            {/* <Link to={"/users"}> */}
-                                                <Card onClick={CheckSer}
-                                                    hoverable
-                                                    cover={<img alt="Item" src={image6} />}
-                                                >
-                                                    <Meta title="Others.." s />
-                                                </Card>
-                                            {/* </Link> */}
-                                        </Col>
+                                        ))}
+                                        
                                     </Row>
                                     <hr />
                                 </div>
