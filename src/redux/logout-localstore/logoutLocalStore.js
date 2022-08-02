@@ -42,6 +42,7 @@ export const handleLogoutUser = (() => {
 
         if (userInfo) {
             localStorage.removeItem("smso-user-logged");
+            localStorage.removeItem("user-resgister-service");
             // setTimeout(function() {
                 window.location.href = '/sign'
             // history.push("/sign")

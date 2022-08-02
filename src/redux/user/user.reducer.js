@@ -6,6 +6,7 @@ import UserActionTypes from "./user.type";
       - Nhận action: dựa vào action type, và data nhận vào từ action để thay đổi state cụ thể này.
 */
 const INITIAL_STATE = {
+  allFriends: [],
   allUsers: [],
   oneUser: [],
   serviceUser: [],
@@ -48,6 +49,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
           ...state,
           allUsers: action.payload,
         };
+
+      case UserActionTypes.GET_FRIEND_SUCCESS:
+        return {
+          ...state,
+          allFriends: action.payload,
+        }
     
       case UserActionTypes.GET_ONE_USER_SUCCESS:
         return {

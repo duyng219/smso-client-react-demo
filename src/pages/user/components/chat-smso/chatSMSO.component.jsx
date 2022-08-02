@@ -1,4 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { getFriendStart } from '../../../../redux/user/user.action';
+
 import { db, auth } from '../../../../firebase/config'
 import './chatSMO.scss'
 
@@ -9,8 +12,13 @@ import SidebarSMSO from './sidebar-chat-smso/sidebar.component'
 import ChatContent from './chat-content/chatcontent.component'
 import EditArea from './edit-area/editarea.component'
 
-const ChatSMSOnline = ({user = null, db = null}) => {
-
+const ChatSMSOnline = () => {
+    const { allFriends } = useSelector(state => state.user)
+    console.log("friend LIST:", allFriends);
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getFriendStart());
+    }, [dispatch])
 
     return (
         <motion.div

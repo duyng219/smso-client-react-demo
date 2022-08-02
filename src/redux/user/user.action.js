@@ -127,3 +127,21 @@ export const getCategoryServiceFailure = (err) => ({
   payload: err,
 });
 
+//GET FRIEND USER
+export const getFriendStart = () => ({
+  type: UserActionTypes.GET_FRIEND_START,
+});
+export const getFriendSuccess = (allFriends) => (
+  {
+  type: UserActionTypes.GET_FRIEND_SUCCESS,
+  payload: allFriends,
+});
+export const getFriendProcessing = () => ({
+  type: UserActionTypes.GET_FRIEND_PROCESSING,
+  payload: "",
+});
+export const getFriendFailure = (err) => ({
+  type: UserActionTypes.GET_CATEGORY_SERVICE_FAILURE,
+  payload: err,
+});
+

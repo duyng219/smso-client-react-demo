@@ -23,6 +23,11 @@ export const selectAllUser = createSelector(
   (user) => user.allUser
 );
 
+export const selectAllFriend = createSelector(
+  [selectUser],
+  (user) => user.allFriends
+);
+
 export const selectOneUser = createSelector(
   [selectUser],
   (user) => user.oneUser

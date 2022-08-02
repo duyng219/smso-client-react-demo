@@ -1,6 +1,6 @@
 // import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { all, call, put, takeLatest, delay } from "redux-saga/effects";
-import { signInFailure, signInSuccess, signInProcessing, signUpProcessing, signUpFailure, getUserProcessing, getUserFailure, getUserSuccess, getOneUserProcessing, getOneUserSuccess, getOneUserFailure, updateRequiredUserProcessing, updateRequiredUserFailure, getServiceProcessing, getServiceSuccess, getServiceFailure, getCategoryServiceFailure, getCategoryServiceSuccess, getCategoryServiceProcessing } from "./user.action";
+import { signInFailure, signInSuccess, signInProcessing, signUpProcessing, signUpFailure, getUserProcessing, getUserFailure, getUserSuccess, getOneUserProcessing, getOneUserSuccess, getOneUserFailure, updateRequiredUserProcessing, updateRequiredUserFailure, getServiceProcessing, getServiceSuccess, getServiceFailure, getCategoryServiceFailure, getCategoryServiceSuccess, getCategoryServiceProcessing, getFriendProcessing, getFriendFailure, getFriendSuccess } from "./user.action";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import UserActionTypes from "./user.type";
 import api from "../../api/client";
@@ -159,6 +159,30 @@ export function* getUser() {
 }
 export function* getUserStart() {
   yield takeLatest(UserActionTypes.GET_USER_START, getUser);
+}
+
+//GET FRIEND USER
+const callAPIGetFriend = async () => {
+  try {
+    const res = api.get("/api/Friends");
+    return res;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+export function* getFriend() {
+  try {
+    yield put(getFriendProcessing());
+    const res = yield call(callAPIGetFriend);
+    console.log("res: ", res);
+    yield put(getFriendSuccess(res.data));
+    return res.data;
+  } catch (error) {
+    yield put(getFriendFailure(error));
+  }
+}
+export function* getFriendStart() {
+  yield takeLatest(UserActionTypes.GET_FRIEND_START, getFriend);
 }
 
 //GET ONE USER
@@ -364,5 +388,5 @@ export const AddFriendUser = async (info) => {
 
 // Call hàm bắt action
 export function* userSaga() {
-  yield all([call(onSignInStart), call(onSignUpStart), call(getUserStart), call(getOneUserStart), call(onUpdateRequiredUserStart), call(getServiceStart), call(getCategoryServiceStart)]);
+  yield all([call(onSignInStart), call(onSignUpStart), call(getUserStart), call(getOneUserStart), call(onUpdateRequiredUserStart), call(getServiceStart), call(getCategoryServiceStart), call(getFriendStart)]);
 }
